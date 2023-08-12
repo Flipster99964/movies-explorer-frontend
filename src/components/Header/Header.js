@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Logo from "../Logo/Logo";
 import Button from "../Button/Button";
@@ -6,9 +6,6 @@ import AccountButton from "../AccountButton/AccountButton";
 import "./Header.css";
 
 function Header() {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  
-    const sidebarHandler = () => setIsSidebarOpen(!isSidebarOpen);
   
     return (
       <header className="header app__header">
@@ -22,9 +19,8 @@ function Header() {
         <div className="header__account-menu">
           {/* <Button className="button_type_none">Регистрация</Button>
           <Button className="button_type_green">Войти</Button> */}
-          <AccountButton />
         </div>
-        <Sidebar isOpen={isSidebarOpen} closeHandler={sidebarHandler} />
+        {/*<Sidebar isOpen={isSidebarOpen} closeHandler={sidebarHandler} /> */}
       </header>
     );
   }
