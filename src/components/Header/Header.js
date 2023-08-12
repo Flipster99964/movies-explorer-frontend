@@ -2,12 +2,14 @@ import React from "react";
 
 import Logo from "../Logo/Logo";
 import Button from "../Button/Button";
+import Container from "../Container/Container";
 import AccountButton from "../AccountButton/AccountButton";
 import "./Header.css";
 
 function Header() {
   
     return (
+      <Container>
       <header className="header app__header">
         <nav className="header__nav">
           <Logo className="logo header__logo" />
@@ -23,6 +25,7 @@ function Header() {
         </div>
         {/*<Sidebar isOpen={isSidebarOpen} closeHandler={sidebarHandler} /> */}
       </header>
+      </Container>
     );
   }
   
