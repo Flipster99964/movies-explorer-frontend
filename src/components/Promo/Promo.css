@@ -4,7 +4,7 @@
   }
   
   .promo {
-    height: 524px;
+    max-height: 574px;
     display: grid;
     grid-template-columns: 640px 310px;
     max-width: calc(100% - 140px);
@@ -14,6 +14,7 @@
     flex-direction: column;
     padding: 0;
     padding-top: 75px;
+    padding-bottom: 50px;
   }
   
   @media (max-width: 768px) {
