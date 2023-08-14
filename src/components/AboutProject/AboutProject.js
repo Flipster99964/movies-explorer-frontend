@@ -1,6 +1,5 @@
 import React from "react";
 
-import Container from "../Container/Container";
 import TextCard from "../TextCard/TextCard";
 import Roadmap from "../Roadmap/Roadmap";
 import Title from "../Title/Title";
