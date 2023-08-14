@@ -7,7 +7,7 @@ import "./AboutMe.css";
 
 function AboutMe() {
   return (
-      <section className="about-me main__about-me">
+      <section className="about-me">
         <Title title="Студент" />
         <div className="student about-me__student">
           <div className="student__information">
@@ -22,7 +22,7 @@ function AboutMe() {
             </p>
             <ul className="student__socials">
               <li className="student__socials-item">
-                <a className="student__link" href="https://github.com/Flipster99964">
+                <a className="student__link" target="_blank" href="https://github.com/Flipster99964">
                   Github
                 </a>
               </li>
