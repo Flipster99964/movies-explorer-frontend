@@ -16,6 +16,12 @@
     justify-content: flex-start;
     align-items: center;
   }
+
+  @media (max-width: 768px) {
+    .header__nav {
+      display: none;
+    }
+  }
   
   .header__logo {
     margin-right: 44px;
@@ -65,12 +71,7 @@
   
   @media (max-width: 768px) {
     .header__account-menu {
-      margin-left: auto;
-      margin-right: 30px;
-      display: flex;
-      align-items: center;
-      justify-self: end;
-      gap: 10px;
+      display: none;
     }
   }
   
@@ -86,6 +87,7 @@
 
   @media (max-width: 500px) {
     .header__account-menu {
+      display: none;
       margin-right: 5px;
     }
   }
@@ -93,14 +95,10 @@
   @media (max-width: 768px) {
     .header {
       max-width: 708px;
+      justify-content: space-between;
     }
   }
 
-  @media (max-width: 500px) {
-    .header__account-menu {
-      margin-right: 5px;
-    }
-  }
 
   .header_type_white {
     background-color: white;

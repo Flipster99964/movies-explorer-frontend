@@ -25,6 +25,10 @@
     font-weight: 400;
   }
   
+  .button_type_burger {
+    padding: 0;
+  }
+
   @media (max-width: 500px) {
     .button_type_profile {
       font-size: 12px;

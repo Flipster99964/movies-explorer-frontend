@@ -62,10 +62,12 @@ function Header({ className }) {
           )}
         </div>
         {isAuth && (
+          <Button className="button_type_burger" onclick={setIsSidebarOpen}>
           <Burger
             className="header__burger-icon"
             handler={sidebarHandler}
           />
+          </Button>
         )}
         <Sidebar isOpen={isSidebarOpen} closeHandler={sidebarHandler} />
       </header>
