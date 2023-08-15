@@ -72,7 +72,7 @@
     }
   }
   
-  @media (max-width: 500px) {
+  @media (max-width: 640px) {
     .promo__title {
       max-width: 300px;
       font-size: 29px;

@@ -39,3 +39,12 @@
     border: 1px solid #3456F3;
     padding: 0
   }
+
+  
+  @media (max-width: 500px) {
+    .login__button {
+      max-width: 100%;
+      text-align: center;
+      
+    }
+  }

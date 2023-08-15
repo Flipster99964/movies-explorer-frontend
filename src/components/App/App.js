@@ -21,7 +21,8 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/signup" element={<Register />} />
           <Route path="/signin" element={<Login />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/404" element={<NotFound />} />
+          <Route path="/*" element={<Main />} />
         </Routes>
       </div>
       );

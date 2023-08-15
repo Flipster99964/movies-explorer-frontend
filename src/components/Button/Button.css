@@ -20,6 +20,7 @@
   }
 
   .button_type_profile {
+    margin: auto;
     font-size: 13px;
     font-weight: 400;
   }

@@ -40,3 +40,11 @@
       margin-bottom: 163px;
     }
   }
+
+  @media (max-width: 500px) {
+    .register__button {
+      max-width: 100%;
+      text-align: center;
+      
+    }
+  }

@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink, Link } from "react-router-dom";
 
 import Header from "../Header/Header";
 import Input from "../Input/Input";
@@ -17,9 +18,11 @@ function Profile() {
         </form>
         <div className="profile__buttons">
           <Button className="button_type_profile">Редактировать</Button>
+          <Link to="/" className="button_type_profile">
           <Button className="button_type_profile button_type_red-text">
             Выйти из аккаунта
           </Button>
+          </Link>
         </div>
       </div>
     </section>

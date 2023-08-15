@@ -11,7 +11,7 @@ import "./Header.css";
 
 function Header({ className }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const isAuth = false; // для смены кнопок
+  const isAuth = true; // для смены кнопок
 
   const sidebarHandler = () => setIsSidebarOpen(!isSidebarOpen);
 
