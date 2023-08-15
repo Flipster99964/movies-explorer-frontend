@@ -91,7 +91,9 @@
   
   @media (max-width: 500px) {
     .promo__image {
-      margin: auto;
+      width: 210px;
+      height: 206px;
+      margin-bottom: 44px;
       grid-column-start: 0;
     }
   }

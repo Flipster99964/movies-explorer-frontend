@@ -4,11 +4,12 @@
   }
   
   .nav-tab__link {
+    margin: auto;
     border: 1px solid #ffff;
     margin-top: 156px;
     padding: 10px 20px;
     background-color: #073042;
-    border-radius: 10px;
+    border-radius: 3px;
     color: #fff;
     text-decoration: none;
     font-size: 12px;
@@ -24,8 +25,8 @@
   
   @media (max-width: 500px) {
     .nav-tab__link {
-      padding: 5px 15px;
-      font-size: 10px;
+      padding: 10px 20px;
+      font-size: 12px;
       line-height: 1.6;
     }
   }
@@ -41,13 +42,5 @@
     .nav-tab {
       position: relative;
       margin-top: 90px;
-    }
-  }
-
-  @media (max-width: 500px) {
-    .nav-tab__link {
-      padding: 5px 15px;
-      font-size: 10px;
-      line-height: 1.6;
     }
   }

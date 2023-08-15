@@ -5,13 +5,15 @@
   
   @media (max-width: 786px) {
     .about-me {
-      padding: 90px 0 0;
+      max-width: 668px;
+      padding: 90px 50px 0;
     }
   }
   
   @media (max-width: 500px) {
     .about-me {
-      padding: 70px 0 0;
+      max-width: 292px;
+      padding: 70px 14px 0;
     }
   }
   
@@ -57,7 +59,7 @@
   
   @media (max-width: 768px) {
     .student {
-      padding-top: 62px;
+      padding-top: 66px;
       gap: 49px;
     }
   }

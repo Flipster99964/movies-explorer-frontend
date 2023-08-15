@@ -17,7 +17,7 @@ function Promo() {
       <NavTab />
       </dev>
       <nav className="promo__image">
-      <PromoImage/>
+      <PromoImage className="promo__image"/>
         </nav>
     </section>
   );

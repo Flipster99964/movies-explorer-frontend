@@ -15,6 +15,7 @@
   @media (max-width: 768px) {
     .text-card__title {
       font-size: 18px;
+      margin-bottom: 16px;
     }
   }
   
@@ -29,7 +30,7 @@
   
   @media (max-width: 768px) {
     .text-card__description {
-      width: 319px;
+      max-width: 319px;
       font-size: 12px;
       line-height: 1.5;
     }
@@ -37,11 +38,24 @@
   
   @media (max-width: 500px) {
     .text-card__description {
+      max-width: 284px;
       font-size: 11px;
       line-height: 1.45;
     }
   }
 
   .text-card {
-    max-width: calc(100% -10px);
+    max-width: 550px;
+  }
+
+  @media (max-width: 768px) {
+    .text-card {
+      max-width: calc(100% -10px);
+    }
+  }
+  
+  @media (max-width: 500px) {
+    .text-card {
+      max-width: 284px;
+    }
   }

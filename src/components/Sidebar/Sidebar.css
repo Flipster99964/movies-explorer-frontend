@@ -4,7 +4,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.3);
     visibility: hidden;
     opacity: 0;
     transition: all 0.2s ease-in-out;
@@ -20,7 +20,7 @@
     box-sizing: border-box;
     width: 521px;
     height: 100vh;
-    background-color: #202020;
+    background-color: #FFFFFF;
     position: fixed;
     top: 0;
     right: 0;
