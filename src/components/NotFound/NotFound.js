@@ -10,7 +10,7 @@ function NotFound() {
           <p className="not-found__error">404</p>
           <h2 className="not-found__title">Страница не найдена</h2>
         </div>
-        <a className="not-found__back" href="1">
+        <a className="not-found__back" href="javascript:history.back()">
           Назад
         </a>
       </div>

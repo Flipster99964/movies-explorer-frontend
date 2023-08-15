@@ -14,7 +14,7 @@ function Input({ label, type, error, modifier }) {
         </label>
         <input
           className={`input__field input__field_type_${modifier}`}
-          type="text"
+          type={type}
           id={type}
           name={type}
         ></input>

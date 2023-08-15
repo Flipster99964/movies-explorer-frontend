@@ -22,6 +22,7 @@
   
   .register__inputs {
     margin-bottom: 75px;
+    border: 0;
   }
 
   .register__button {

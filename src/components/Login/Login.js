@@ -20,7 +20,7 @@ function Login() {
         </Button>
         <p className="login__text">
           Ещё не зарегистрированы?{" "}
-          <a className="login__link" href="1">
+          <a className="login__link" href="/signup">
             Регистрация
           </a>
         </p>

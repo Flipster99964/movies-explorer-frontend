@@ -57,8 +57,8 @@ function Movies() {
       ];
   return (
     <>
-      <Header />
         <section className="movies app__movies" aria-label="Фильмы">
+        <Header className="header_type_white"/>
         <SearchForm />
           <MoviesCardList data={allMovies} />
           <div className="movies__footer">

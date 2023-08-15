@@ -1,4 +1,7 @@
 .button_type_account {
+  text-decoration: none;
+    border: 1px solid #AAAAAA;
+    border-radius: 50px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -6,11 +9,12 @@
   }
   
   .button__text_type_account {
+    text-decoration: none;
     margin: 0;
     font-size: 14px;
     font-weight: 500;
     line-height: 0.87;
-    color: #fff;
+    color: #000;
   }
   
   .button__icon_type_account {

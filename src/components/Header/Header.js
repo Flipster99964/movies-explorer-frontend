@@ -1,32 +1,76 @@
-import React from "react";
+import React, { useState } from "react";
+import { NavLink, Link } from "react-router-dom";
 
 import Logo from "../Logo/Logo";
+import Burger from "../Icons/Burger"
 import Button from "../Button/Button";
 import Container from "../Container/Container";
 import AccountButton from "../AccountButton/AccountButton";
+import Sidebar from "../Sidebar/Sidebar";
 import "./Header.css";
 
 function Header({ className }) {
-  
-    return (
-      <Container>
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const isAuth = false; // для смены кнопок
+
+  const sidebarHandler = () => setIsSidebarOpen(!isSidebarOpen);
+
+  return (
+    <Container>
       <header className={`header app__header ${className}`}>
+      <a className="header__link-logo" href="/">
+            <Logo className="logo header__logo" />
+        </a>
+      {isAuth && (
         <nav className="header__nav">
-          <Logo className="logo header__logo" />
-         {/* <ul className="header__links">
-            <li className="header__link header__link_active">Фильмы</li>
-            <li className="header__link">Сохраненные фильмы</li>
-          </ul> */}
+          <ul className="header__links">
+            <NavLink
+              className="header__link"
+              activeClassName="header__link_active"
+              to="/movies"
+            >
+              Фильмы
+            </NavLink>
+            <NavLink
+              className="header__link"
+              activeClassName="header__link_active"
+              to="/saved-movies"
+            >
+              Сохраненные фильмы
+            </NavLink>
+          </ul>
         </nav>
+                )}
         <div className="header__account-menu">
-          <Button className="button_type_none">Регистрация</Button>
-          <Button className="button_type_green">Войти</Button>
-          {/*<AccountButton /> */}
+          {isAuth ? (
+            <AccountButton />
+          ) : (
+            <>
+            <div className="header__links">
+            <Link to="/signup">
+              <Button className="button_type_header button_type_white-text">
+                Регистрация
+              </Button>
+            </Link>
+            <Link to="/signin">
+              <Button className="button_type_header button_type_green">
+                Войти
+              </Button>
+            </Link>
+            </div>
+            </>
+          )}
         </div>
-        {/*<Sidebar isOpen={isSidebarOpen} closeHandler={sidebarHandler} /> */}
+        {isAuth && (
+          <Burger
+            className="header__burger-icon"
+            handler={sidebarHandler}
+          />
+        )}
+        <Sidebar isOpen={isSidebarOpen} closeHandler={sidebarHandler} />
       </header>
-      </Container>
-    );
+    </Container>
+  );
   }
   
   export default Header;

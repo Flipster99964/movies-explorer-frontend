@@ -1,10 +1,10 @@
 .header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: stretch;
     color: #fff;
     background-color: #073042;
     padding: 20px 0;
+    flex-flow: row wrap;
   }
 
   .app__header {
@@ -13,6 +13,7 @@
   
   .header__nav {
     display: flex;
+    justify-content: flex-start;
     align-items: center;
   }
   
@@ -41,6 +42,8 @@
   }
   
   .header__link {
+    text-decoration: none;
+    color: black;
     list-style: none;
     font-size: 13px;
     font-weight: 400;
@@ -53,10 +56,11 @@
   }
   
   .header__account-menu {
+    margin-left: auto;
     display: flex;
     align-items: center;
+    justify-self: end;
     gap: 10px;
-    cursor: pointer;
   }
   
   @media (max-width: 768px) {
