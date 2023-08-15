@@ -6,6 +6,7 @@
   @media (max-width: 768px) {
     .about {
       padding: 90px 0;
+      max-width: 100%
     }
   }
   
@@ -16,16 +17,19 @@
   }
   
   .about__cards {
+    max-width: calc(100% - 140px);
     padding-top: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 40px;
+    gap: 30px;
     margin-bottom: 110px;
   }
   
   @media (max-width: 768px) {
     .about__cards {
+      margin: auto;
+      max-width: calc(100% - 100px);
       gap: 30px;
       margin-bottom: 93px;
     }
@@ -33,6 +37,9 @@
   
   @media (max-width: 500px) {
     .about__cards {
+      margin: auto;
+      margin-bottom: 60px;
+      width: 284px;
       padding-top: 60px;
       flex-direction: column;
       gap: 56px;

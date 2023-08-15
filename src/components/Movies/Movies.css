@@ -3,19 +3,18 @@
   }
   
   .app__movies {
-    padding-bottom: 80px;
     background-color: #FFFFFF;
   }
   
   @media (max-width: 768px) {
     .movies {
-      padding-top: 64px;
+      padding-top: 0px;
     }
   }
   
   @media (max-width: 500px) {
     .movies {
-      padding-top: 78px;
+      padding-top: 0px;
     }
   }
   

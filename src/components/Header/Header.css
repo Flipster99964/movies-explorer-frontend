@@ -37,7 +37,7 @@
   
   @media (max-width: 768px) {
     .header__links {
-      display: none;
+      margin-left: 0;
     }
   }
   
@@ -65,7 +65,12 @@
   
   @media (max-width: 768px) {
     .header__account-menu {
-      display: none;
+      margin-left: auto;
+      margin-right: 30px;
+      display: flex;
+      align-items: center;
+      justify-self: end;
+      gap: 10px;
     }
   }
   
@@ -76,6 +81,18 @@
   @media (max-width: 768px) {
     .header__burger-icon {
       display: block;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .header__account-menu {
+      margin-right: 5px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .header {
+      max-width: 708px;
     }
   }
 

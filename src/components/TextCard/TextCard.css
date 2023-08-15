@@ -19,7 +19,7 @@
   }
   
   .text-card__description {
-    width: 550px;
+    max-width: 550px;
     margin: 0;
     font-size: 14px;
     font-weight: 400;
@@ -29,6 +29,7 @@
   
   @media (max-width: 768px) {
     .text-card__description {
+      width: 319px;
       font-size: 12px;
       line-height: 1.5;
     }
@@ -39,4 +40,8 @@
       font-size: 11px;
       line-height: 1.45;
     }
+  }
+
+  .text-card {
+    max-width: calc(100% -10px);
   }

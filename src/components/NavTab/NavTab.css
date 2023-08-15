@@ -29,3 +29,25 @@
       line-height: 1.6;
     }
   }
+
+  @media (max-width: 768px) {
+    .nav-tab {
+      position: relative;
+      margin-top: 102px;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    .nav-tab {
+      position: relative;
+      margin-top: 90px;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .nav-tab__link {
+      padding: 5px 15px;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+  }

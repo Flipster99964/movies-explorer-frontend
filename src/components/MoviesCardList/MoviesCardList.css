@@ -1,7 +1,8 @@
 .movies-list {
+    background-color: white;
     width: 100%;
-    margin: 0 0 60px;
-    padding: 0;
+    padding-bottom: 50px;
+    margin: 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, 360px);
     justify-content: center;
@@ -12,7 +13,7 @@
     .movies-list {
       grid-template-columns: repeat(auto-fit, 340px);
       column-gap: 24px;
-      margin-bottom: 80px;
+      padding-bottom: 80px;
     }
   }
   

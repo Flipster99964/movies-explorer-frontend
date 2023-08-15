@@ -47,6 +47,19 @@
   }
 }
 
+@media (max-width: 768px) {
+  .roadmap {
+    max-width: calc(100% - 100px);
+    margin: auto;
+  }
+}
+
+@media (max-width: 500px) {
+  .roadmap {
+    max-width: calc(100% - 36px);
+  }
+}
+
 .roadmap__time_type_colored {
   background-color: #3ddc84;
   color: #000;
