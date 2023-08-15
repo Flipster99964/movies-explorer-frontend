@@ -1,0 +1,30 @@
+.input__label {
+    display: block;
+    color: black;
+    font-size: 10px;
+    margin-bottom: 11px;
+  }
+  
+  .input__field {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+    border: none;
+    outline: none;
+    padding: 10px 0;
+    margin-bottom: 6px;
+    color: black;
+    font-size: 13px;
+    border-bottom: 1px solid #E8E8E8;
+  }
+  
+  .input__error {
+    display: block;
+    font-size: 10px;
+    color: #ee3465;
+    height: 12px;
+  }
+  
+  .unauth-page__input {
+    margin-bottom: 2px;
+  }

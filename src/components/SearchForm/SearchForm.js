@@ -1,6 +1,6 @@
 import React from "react";
 
-import Search from "../Icons/Search";
+import Button from "../Button/Button";
 import "./SearchForm.css";
 
 function SearchForm() {
@@ -12,9 +12,12 @@ function SearchForm() {
           placeholder="Фильм"
           required
         ></input>
-        <button className="button button_type_search button_type_blue">
+        <Button
+          className="button button_type_search button_type_blue"
+          type="submit"
+        >
           Поиск
-        </button>
+        </Button>
       </div>
       <label className="search-form__label" htmlFor="short-film">
         <input
