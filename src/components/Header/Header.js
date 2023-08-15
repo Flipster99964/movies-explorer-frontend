@@ -6,11 +6,11 @@ import Container from "../Container/Container";
 import AccountButton from "../AccountButton/AccountButton";
 import "./Header.css";
 
-function Header() {
+function Header({ className }) {
   
     return (
       <Container>
-      <header className="header app__header">
+      <header className={`header app__header ${className}`}>
         <nav className="header__nav">
           <Logo className="logo header__logo" />
          {/* <ul className="header__links">

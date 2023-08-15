@@ -6,6 +6,7 @@ import SavedMovies from "../SavedMovies/SavedMovies";
 import NotFound from "../NotFound/NotFound";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
+import Profile from "../Profile/Profile";
 
 function App() {
     return (
@@ -15,8 +16,9 @@ function App() {
         <Movies />
         <SavedMovies />
         <Login />
-        <Register />*/}
-        <NotFound />
+        <Register />
+        <NotFound />*/}
+        <Profile />
         </div>
       );
 }

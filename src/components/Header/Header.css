@@ -74,3 +74,16 @@
       display: block;
     }
   }
+
+  @media (max-width: 500px) {
+    .header__account-menu {
+      margin-right: 5px;
+    }
+  }
+
+  .header_type_white {
+    background-color: white;
+  }
+  .header_type_hidden {
+    visibility: hidden;
+  }
