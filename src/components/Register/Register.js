@@ -2,7 +2,6 @@ import React from "react";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import UnauthPage from "../UnauthPage/UnauthPage";
-import Header from "../Header/Header";
 
 import "./Register.css";
 
@@ -16,6 +15,8 @@ function Register() {
       <form className="register" name="register">
       <fieldset className="register__inputs">
           <Input
+            maxlength="20"
+            minlength="2"
             name="name"
             label="Имя"
             modifier="unauth"
@@ -30,6 +31,8 @@ function Register() {
             required
           />
           <Input
+            maxlength="25"
+            minlength="8"
             name="password"
             label="Пароль"
             type="password"

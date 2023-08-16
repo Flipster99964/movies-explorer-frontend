@@ -8,7 +8,7 @@ function NotFound() {
       <div className="not-found__content">
         <div className="not-found__text">
           <p className="not-found__error">404</p>
-          <h2 className="not-found__title">Страница не найдена</h2>
+          <h1 className="not-found__title">Страница не найдена</h1>
         </div>
         <a className="not-found__back" href="javascript:history.back()">
           Назад

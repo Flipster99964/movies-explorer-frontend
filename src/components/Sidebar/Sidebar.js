@@ -13,6 +13,7 @@ function Sidebar({ isOpen, closeHandler }) {
       >
         <ul className="sidebar__links">
         <NavLink
+          type="button"
             className="sidebar__link"
             activeClassName="sidebar__link_active"
             to="/"
@@ -21,6 +22,7 @@ function Sidebar({ isOpen, closeHandler }) {
           Главная
           </NavLink>
           <NavLink
+            type="button"
             className="sidebar__link"
             activeClassName="sidebar__link_active"
             to="/movies"
@@ -28,6 +30,7 @@ function Sidebar({ isOpen, closeHandler }) {
           Фильмы
           </NavLink>
           <NavLink
+            type="button"
             className="sidebar__link"
             activeClassName="sidebar__link_active"
             to="/saved-movies"
@@ -36,7 +39,7 @@ function Sidebar({ isOpen, closeHandler }) {
           </NavLink>
         </ul>
         <AccountButton />
-        <Close className="sidebar__close-icon" handler={closeHandler} />
+        <Close type="button" className="sidebar__close-icon" handler={closeHandler} />
       </div>
     </div>
   );

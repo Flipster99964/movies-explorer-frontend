@@ -35,7 +35,7 @@ function AboutMe() {
           <ul className="portfolio__projects">
             <li className="project__item">
               <a
-                href="https://flipster99964.github.io/how-to-learn/"
+                href="https://github.com/Flipster99964/how-to-learn"
                 className="project__link"
                 target="_blank"
                 rel="noreferrer"
@@ -57,7 +57,7 @@ function AboutMe() {
             </li>
             <li className="project__item">
               <a
-                href="https://api.flipster99964.student.nomoredomains.club/"
+                href="https://github.com/Flipster99964/react-mesto-api-full"
                 className="project__link"
                 target="_blank"
                 rel="noreferrer"

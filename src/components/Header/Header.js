@@ -25,6 +25,7 @@ function Header({ className }) {
         <nav className="header__nav">
           <ul className="header__links">
             <NavLink
+              type="button"
               className="header__link"
               activeClassName="header__link_active"
               to="/movies"
@@ -32,6 +33,7 @@ function Header({ className }) {
               Фильмы
             </NavLink>
             <NavLink
+              type="button"
               className="header__link"
               activeClassName="header__link_active"
               to="/saved-movies"
@@ -46,23 +48,25 @@ function Header({ className }) {
             <AccountButton />
           ) : (
             <>
+            <nav className="header__nav">
             <div className="header__links">
             <Link to="/signup">
-              <Button className="button_type_header button_type_white-text">
+              <Button type="button" className="button_type_header button_type_white-text">
                 Регистрация
               </Button>
             </Link>
             <Link to="/signin">
-              <Button className="button_type_header button_type_green">
+              <Button type="button" className="button_type_header button_type_green">
                 Войти
               </Button>
             </Link>
             </div>
+          </nav>  
             </>
           )}
         </div>
         {isAuth && (
-          <Button className="button_type_burger" onclick={setIsSidebarOpen}>
+          <Button type="button" className="button_type_burger" onclick={setIsSidebarOpen}>
           <Burger
             className="header__burger-icon"
             handler={sidebarHandler}

@@ -12,7 +12,9 @@ function Login() {
       <form className="login" name="login">
         <div className="login__inputs">
         <Input label="E-mail" type="email" modifier="unauth" />
-        <Input label="Пароль" type="password" modifier="unauth" />
+        <Input label="Пароль" type="password" modifier="unauth"
+          maxlength="25"
+          minlength="8" />
         </div>
         <div className="login__buttons">
         <Button className="button_type_blue button_type_submit login__button" type="submit">

@@ -5,6 +5,7 @@ import "./SearchForm.css";
 
 function SearchForm() {
   return (
+    <section className="search-form_section">
     <form className="search-form app__search-form">
       <div className="search-form__string">
         <input
@@ -33,6 +34,7 @@ function SearchForm() {
         <span className="search-form__label-text">Короткометражки</span>
       </label>
     </form>
+    </section>
   );
 }
 

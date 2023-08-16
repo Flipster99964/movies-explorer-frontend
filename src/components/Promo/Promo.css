@@ -3,7 +3,6 @@
   }
   
   .promo {
-    max-height: 574px;
     display: grid;
     grid-template-columns: 640px 310px;
     max-width: calc(100% - 140px);

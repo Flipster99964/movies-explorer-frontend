@@ -5,14 +5,14 @@
   
   @media (max-width: 768px) {
     .app__search-form {
-      padding: 0 60px;
+      padding: 0 30px;
       margin-bottom: 63px;
     }
   }
   
   @media (max-width: 500px) {
     .app__search-form {
-      padding: 0 28px;
+      padding: 0 14px;
       margin-bottom: 75px;
     }
   }

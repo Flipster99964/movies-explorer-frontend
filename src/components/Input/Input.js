@@ -2,7 +2,7 @@ import React from "react";
 
 import "./Input.css";
 
-function Input({ label, type, error, modifier }) {
+function Input({ label, type, error, modifier, maxlength, minlength }) {
   return (
     <>
       <div className={`input unauth-page__input input_type_${modifier}`}>
@@ -17,6 +17,10 @@ function Input({ label, type, error, modifier }) {
           type={type}
           id={type}
           name={type}
+          placeholder={label}
+          maxlength={maxlength}
+          minlength={minlength}
+          required
         ></input>
       </div>
       <span className={`input__error input__error_type_${modifier}`}>
