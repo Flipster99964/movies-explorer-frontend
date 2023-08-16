@@ -48,7 +48,6 @@ function Header({ className }) {
             <AccountButton />
           ) : (
             <>
-            <nav className="header__nav">
             <div className="header__links">
             <Link to="/signup">
               <Button type="button" className="button_type_header button_type_white-text">
@@ -61,7 +60,6 @@ function Header({ className }) {
               </Button>
             </Link>
             </div>
-          </nav>  
             </>
           )}
         </div>

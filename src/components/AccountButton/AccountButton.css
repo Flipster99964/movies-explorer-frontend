@@ -22,3 +22,9 @@
     padding: 10px;
     border-radius: 6px;
   }
+
+  @media (max-width: 768px) {
+    .button_type_account {
+      display: none;
+    }
+  }

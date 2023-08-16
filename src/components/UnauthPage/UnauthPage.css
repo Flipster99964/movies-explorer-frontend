@@ -43,5 +43,6 @@
   @media (max-width: 500px) {
     .unauth-page__title {
       margin-bottom: 80px;
+      margin-top: 50px;
     }
   }

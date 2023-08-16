@@ -13,7 +13,7 @@
   
   @media (max-width: 768px) {
     .profile__container {
-      padding-top: 206px;
+      padding-top: 236px;
     }
   }
   
@@ -28,14 +28,14 @@
     color: black;
     margin: 0;
     text-align: center;
-    margin-bottom: 125px;
+    margin-bottom: 123px;
     font-size: 24px;
     font-weight: 500;
   }
   
   @media (max-width: 768px) {
     .profile__title {
-      margin-bottom: 99px;
+      margin-bottom: 96px;
     }
   }
   
@@ -46,18 +46,18 @@
   }
   
   .profile__form {
-    margin-bottom: 184px;
+    margin-bottom: 208px;
   }
   
   @media (max-width: 768px) {
     .profile__form {
-      margin-bottom: 176px;
+      margin-bottom: 198px;
     }
   }
   
   @media (max-width: 500px) {
     .profile__form {
-      margin-bottom: 343px;
+      margin-bottom: 360px;
     }
   }
   

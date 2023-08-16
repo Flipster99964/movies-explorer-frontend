@@ -22,7 +22,7 @@ const textCards = [
 
 function AboutProject() {
   return (
-      <section className="about">
+      <section className="about" id="about">
         <Title title="О проекте" />
         <div className="about__cards">
           {textCards.map(({ id, title, description }) => (

@@ -21,12 +21,12 @@
   }
   
   .login__inputs {
-    margin-bottom: 162px;
+    margin-bottom: 201px;
   }
   
   @media (max-width: 500px) {
     .login__inputs {
-      margin-bottom: 251px;
+      margin-bottom: 289px;
     }
   }
   .login__button {

@@ -13,7 +13,7 @@ function Profile() {
       <div className="profile__container">
         <h1 className="profile__title">Привет, Виталий!</h1>
         <form className="profile__form">
-          <Input label="Имя" type="name" modifier="profile" />
+          <Input label="Имя" type="name" modifier="profile" maxlength={20} minlength={2}/>
           <Input label="E-mail" type="email" modifier="profile" />
         </form>
         <div className="profile__buttons">

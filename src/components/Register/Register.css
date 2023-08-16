@@ -21,7 +21,8 @@
   }
   
   .register__inputs {
-    margin-bottom: 75px;
+    padding: 0;
+    margin-bottom: 152px;
     border: 0;
   }
 
@@ -37,13 +38,14 @@
   
   @media (max-width: 500px) {
     .register__inputs {
-      margin-bottom: 163px;
+      margin-bottom: 228px;
     }
   }
 
   @media (max-width: 500px) {
     .register__button {
       max-width: 100%;
+      margin-bottom: 14px;
       text-align: center;
       
     }

@@ -19,6 +19,7 @@
   
   @media (max-width: 500px) {
     .movies-list {
+      padding-bottom: 76px;
       grid-template-columns: repeat(auto-fit, 300px);
       gap: 16px;
     }
