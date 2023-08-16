@@ -29,7 +29,8 @@
       max-height: 636px;
       max-width: calc(100% - 28px);
       padding-top: 70px;
-      margin-bottom: 66px;
+      margin-bottom: 30px;
+      padding-bottom: 0;
     }
   }
   

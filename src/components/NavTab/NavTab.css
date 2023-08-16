@@ -25,6 +25,7 @@
   
   @media (max-width: 500px) {
     .nav-tab__link {
+      margin-top: 90px;
       padding: 10px 20px;
       font-size: 12px;
       line-height: 1.6;
@@ -41,6 +42,6 @@
   @media (max-width: 500px) {
     .nav-tab {
       position: relative;
-      margin-top: 90px;
+      margin-top: 0px;
     }
   }
