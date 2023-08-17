@@ -83,6 +83,10 @@
     letter-spacing: -0.04em;
   }
 
+  .footer__link:hover {
+    opacity: 0.5;
+  }
+
   @media (max-width: 500px) {
     .footer__links {
       flex-direction: column;

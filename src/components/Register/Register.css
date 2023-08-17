@@ -19,6 +19,10 @@
     color: #3456F3;
     text-decoration: none;
   }
+
+  .register__link:hover {
+    opacity: 0.5;
+  }
   
   .register__inputs {
     padding: 0;

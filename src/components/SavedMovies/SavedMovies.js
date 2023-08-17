@@ -40,7 +40,7 @@ const savedMovies = [
 function SavedMovies() {
   return (
     <>
-        <section className="movies app__movies" aria-label="Сохраненные фильмы">
+        <section className="movies app__movies movies__saved" aria-label="Сохраненные фильмы">
         <Header className={"header_type_white"}/>
           <SearchForm />
           <MoviesCardList data={savedMovies} />

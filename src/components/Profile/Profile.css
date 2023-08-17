@@ -13,13 +13,13 @@
   
   @media (max-width: 768px) {
     .profile__container {
-      padding-top: 236px;
+      padding-top: 232px;
     }
   }
   
   @media (max-width: 500px) {
     .profile__container {
-      padding-top: 51px;
+      padding-top: 70px;
       max-width: calc(100% - 60px);
     }
   }
@@ -46,18 +46,18 @@
   }
   
   .profile__form {
-    margin-bottom: 208px;
+    margin-bottom: 177px;
   }
   
   @media (max-width: 768px) {
     .profile__form {
-      margin-bottom: 198px;
+      margin-bottom: 160px;
     }
   }
   
   @media (max-width: 500px) {
     .profile__form {
-      margin-bottom: 360px;
+      margin-bottom: 330px;
     }
   }
   

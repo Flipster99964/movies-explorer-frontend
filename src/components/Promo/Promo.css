@@ -73,6 +73,7 @@
   
   @media (max-width: 640px) {
     .promo__title {
+      margin-top: 0px;
       max-width: 300px;
       font-size: 29px;
       line-height: 1.27;

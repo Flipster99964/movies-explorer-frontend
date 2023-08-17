@@ -63,3 +63,7 @@
     color: #3456F3;
     text-decoration: none;
   }
+
+  .not-found__back:hover {
+    opacity: 0.5;
+  }

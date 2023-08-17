@@ -19,7 +19,22 @@
     }
   }
   
- 
+  .movies__saved {
+    padding-bottom: 190px;
+  }
+
+  @media (max-width: 768px) {
+    .movies__saved {
+      padding-bottom: 70px;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    .movies__saved {
+      padding-bottom: 70px;
+    }
+  }
+
   .movies-list {
     width: 100%;
     margin: 0 0 60px;
@@ -47,20 +62,11 @@
   }
   
   .movies__footer {
-    margin-bottom: 80px;
     border-radius: 5px;
     margin: 0 70px;
     background-color: #F9F9F9;
     display: flex;
     justify-content: center;
-  }
-
-  @media (max-width: 1024px) {
-    .movies-list {
-      grid-template-columns: repeat(auto-fit, 340px);
-      column-gap: 24px;
-      margin-bottom: 80px;
-    }
   }
   
   @media (max-width: 500px) {

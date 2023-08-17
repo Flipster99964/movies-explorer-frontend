@@ -7,7 +7,7 @@
     padding-bottom: 18px;
   }
   
-  @media (max-width: 500px) {
+  @media (max-width: 768px) {
     .movies-card {
       padding-bottom: 14px;
     }
@@ -49,6 +49,7 @@
   
   @media (max-width: 500px) {
     .movies-card__duration {
+      margin-top: 14px;
       font-size: 12px;
       line-height: 1.5;
     }

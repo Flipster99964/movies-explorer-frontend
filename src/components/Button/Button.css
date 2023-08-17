@@ -8,7 +8,11 @@
     font-weight: 500;
     line-height: 0.75;
   }
-  
+
+  .button:hover {
+    opacity: 0.5;
+  }
+
   .button_type_none {
     color: #fff;
     background-color: transparent;

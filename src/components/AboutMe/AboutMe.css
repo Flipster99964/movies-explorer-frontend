@@ -14,7 +14,7 @@
     .about-me {
       margin: auto;
       max-width: 100%;
-      padding: 70px 14px 70px;
+      padding: 70px 14px 50px;
     }
   }
   
@@ -193,6 +193,10 @@
     line-height: 1.21;
     text-decoration: none;
   }
+
+  .student__link:hover {
+    opacity: 0.5;
+  }
   
   .portfolio__title {
     margin: 0 0 50px;
@@ -245,6 +249,10 @@
     line-height: 1.66;
     text-decoration: none;
     letter-spacing: -0.04em;
+  }
+
+  .project__link:hover {
+    opacity: 0.5;
   }
   
   @media (max-width: 768px) {
