@@ -7,7 +7,9 @@ function UnauthPage({ title, children }) {
   return (
     <section className="unauth-page">
       <div className="unauth-page__container">
-        <Logo className="logo unauth-page__logo" />
+        <a className="logo unauth-page__logo" href="/">
+          <Logo className="logo unauth-page__logo" />
+        </a>
         <h1 className="unauth-page__title">{title}</h1>
         {children}
       </div>

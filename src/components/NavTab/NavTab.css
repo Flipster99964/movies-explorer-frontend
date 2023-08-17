@@ -1,6 +1,6 @@
 .nav-tab {
     position: relative;
-    margin-top: 156px;
+    margin-top: 146px;
   }
   
   .nav-tab__link {
@@ -24,7 +24,7 @@
   
   @media (max-width: 500px) {
     .nav-tab__link {
-      margin-top: 90px;
+      margin-top: 80px;
       padding: 10px 20px;
       font-size: 12px;
       line-height: 1.6;
@@ -34,7 +34,7 @@
   @media (max-width: 768px) {
     .nav-tab {
       position: relative;
-      margin-top: 102px;
+      margin-top: 92px;
     }
   }
   

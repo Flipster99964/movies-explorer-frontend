@@ -20,7 +20,7 @@ function Header({ className }) {
       <header className={`header app__header ${className}`}>
       <a className="header__link-logo" href="/">
             <Logo className="logo header__logo" />
-        </a>
+      </a>
       {isAuth && (
         <nav className="header__nav">
           <ul className="header__links">
@@ -45,7 +45,9 @@ function Header({ className }) {
                 )}
         <div className="header__account-menu">
           {isAuth ? (
+          <div className="header__account-button">
             <AccountButton />
+          </div>
           ) : (
             <>
             <div className="header__links">

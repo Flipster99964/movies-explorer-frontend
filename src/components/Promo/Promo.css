@@ -17,6 +17,7 @@
   
   @media (max-width: 1040px) {
     .promo {
+      padding-top: 140px;
       display: flex;
       align-items: center;
       max-width: calc(100% - 40px);
@@ -62,6 +63,7 @@
 
   @media (max-width: 1040px) {
     .promo__title {
+      margin-top: 46px;
       width: 680px;
       text-align: center;
       font-size: 40px;

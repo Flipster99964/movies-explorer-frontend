@@ -75,7 +75,7 @@
     }
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 768px) {
     .header__account-menu {
       margin-right: 5px;
     }
@@ -94,4 +94,11 @@
   }
   .header_type_hidden {
     visibility: hidden;
+  }
+
+  @media (max-width: 768px) {
+    .header__account-button {
+      display: none;
+      margin-right: 5px;
+    }
   }

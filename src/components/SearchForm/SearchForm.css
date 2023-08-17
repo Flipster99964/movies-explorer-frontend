@@ -1,12 +1,10 @@
 .app__search-form {
-    margin-bottom: 119px;
-    padding: 0 70px;
+    padding: 70px 70px 125px;
   }
   
   @media (max-width: 768px) {
     .app__search-form {
-      padding: 0 30px;
-      margin-bottom: 63px;
+      padding: 70px 30px 133px;
     }
   }
   

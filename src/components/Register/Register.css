@@ -22,7 +22,7 @@
   
   .register__inputs {
     padding: 0;
-    margin-bottom: 152px;
+    margin-bottom: 128px;
     border: 0;
   }
 
@@ -38,7 +38,7 @@
   
   @media (max-width: 500px) {
     .register__inputs {
-      margin-bottom: 228px;
+      margin-bottom: 216px;
     }
   }
 
