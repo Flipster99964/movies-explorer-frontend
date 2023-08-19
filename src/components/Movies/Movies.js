@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -9,61 +9,30 @@ import "./Movies.css";
 import Button from "../Button/Button";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import savedPageContext from "../../context/saved-page-context";
+import Preloader from "../Preloader/Preloader";
 
 function Movies() {
-    const allMovies = [
-        {
-          id: 1,
-          title: "В погоне за Бенкси",
-          duration: 27,
-          imageUrl:
-            "https://images.unsplash.com/photo-1647755370031-2bb9782f922a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60",
-        },
-        {
-          id: 2,
-          title: "В погоне за Бенкси",
-          duration: 27,
-          imageUrl:
-            "https://images.unsplash.com/photo-1647755370031-2bb9782f922a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60",
-        },
-        {
-            id: 3,
-            title: "В погоне за Бенкси",
-            duration: 27,
-            imageUrl:
-              "https://images.unsplash.com/photo-1647755370031-2bb9782f922a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60",
-          },
-        {
-          id: 4,
-          title: "В погоне за Бенкси",
-          duration: 27,
-          imageUrl:
-            "https://images.unsplash.com/photo-1647755370031-2bb9782f922a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60",
-        },
-        {
-        id: 5,
-        title: "В погоне за Бенкси",
-        duration: 27,
-        imageUrl:
-          "https://images.unsplash.com/photo-1647755370031-2bb9782f922a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60",
-      },
-      {
-        id: 6,
-        title: "В погоне за Бенкси",
-        duration: 27,
-        imageUrl:
-          "https://images.unsplash.com/photo-1647755370031-2bb9782f922a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60",
-      },
-      ];
+  const { onSavedPage, setOnSavedPage } = useContext(savedPageContext);
+  const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => setOnSavedPage(false), [setOnSavedPage]);
+  
   return (
     <>
         <section className="movies app__movies" aria-label="Фильмы">
         <Header className="header_type_white"/>
-        <SearchForm />
-          <MoviesCardList data={allMovies} />
-          <div className="movies__footer">
+        <SearchForm
+            setMovies={setMovies}
+            setIsLoading={setIsLoading}
+          />
+          {isLoading ? <Preloader /> : <MoviesCardList data={movies} />}
+          {!isLoading && movies && (
+            <p className="movies__message">Ничего не найдено</p>
+          )}
+          {/* <div className="movies__footer">
             <Button className="button_type_more">Ещё</Button>
-          </div>
+          </div> */}
         </section>
       <Footer />
     </>
