@@ -1,0 +1,156 @@
+.app__search-form {
+    padding: 70px 70px 125px;
+  }
+  
+  @media (max-width: 768px) {
+    .app__search-form {
+      padding: 70px 30px 125px;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    .app__search-form {
+      padding: 0 14px;
+      padding-top: 70px;
+      margin-bottom: 110px;
+    }
+  }
+  
+  .search-form__string {
+    display: flex;
+    border: 1.5px solid rgba(170, 170, 170, .2);
+    border-radius: 10px;
+    margin-bottom: 27px;
+    position: relative;
+  }
+  
+  @media (max-width: 500px) {
+    .search-form__string {
+      margin-bottom: 27px;
+    }
+  }
+  
+  .search-form__input {
+    display: block;
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    text-align: left;
+    padding: 0 25px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.21;
+    color: #000;
+  }
+
+  .search-form__input:focus{
+    outline: 1px solid #3456F3;
+  }
+  
+  @media (max-width: 500px) {
+    .search-form__input {
+      padding: 0 12px;
+      text-align: left;
+      font-size: 18px;
+    }
+  }
+  
+  .search-form__label {
+    display: flex;
+    gap: 14px;
+    justify-content: left;
+    margin: auto;
+  }
+
+  .search-form__label:hover {
+    opacity: 0.5;
+  }
+  
+  .search-form__radio {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  
+  .search-form__pseudo-item {
+    box-sizing: border-box;
+    width: 36px;
+    height: 20px;
+    box-shadow: 0px 4px 4px rgba(50, 50, 71, 0.08),
+      0px 4px 8px rgba(50, 50, 71, 0.06);
+    border-radius: 16px;
+    display: flex;
+    padding: 2px;
+    align-items: center;
+    background-color: #EBEBEB;
+    cursor: pointer;
+  }
+  
+  .search-form__circle {
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .search-form__radio:checked + .search-form__pseudo-item > .search-form__circle {
+    transform: translate(100%);
+    background-color: #3ddc84;
+  }
+  
+  .search-form__label-text {
+    color: #000;
+    font-size: 14px;
+    line-height: 1.28;
+  }
+  
+  @media (max-width: 500px) {
+    .search-form__label-text {
+      font-size: 11px;
+      line-height: 1.63;
+    }
+  }
+  
+  .search-form__icon {
+    position: absolute;
+    top: 0;
+    left: 8px;
+    border: 1px solid #424242;
+    padding: 9px;
+    border-radius: 50%;
+  }
+  
+  .button_type_search {
+    color: #FFFFFF;
+    background-color: blue;
+    position: relative;
+    margin: 10px 10px 10px;
+    right: 0;
+    width: 120px;
+    height: 52px;
+    padding: 0;
+    border: 1px solid blue;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 768px) {
+    .search-form__icon {
+      display: none;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .button_type_search {
+      margin: 6px 6px 6px;
+      width: 125px;
+      height: 44px;
+    }
+  }

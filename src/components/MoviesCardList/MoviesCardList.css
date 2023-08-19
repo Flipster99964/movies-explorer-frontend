@@ -1,0 +1,26 @@
+.movies-list {
+    background-color: white;
+    width: 100%;
+    padding-bottom: 50px;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 360px);
+    justify-content: center;
+    gap: 30px;
+  }
+  
+  @media (max-width: 1024px) {
+    .movies-list {
+      grid-template-columns: repeat(auto-fit, 340px);
+      column-gap: 24px;
+      padding-bottom: 80px;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    .movies-list {
+      padding-bottom: 76px;
+      grid-template-columns: repeat(auto-fit, 300px);
+      gap: 16px;
+    }
+  }

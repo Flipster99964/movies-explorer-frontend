@@ -1,0 +1,39 @@
+.input__label {
+    display: block;
+    color: black;
+    font-size: 10px;
+    margin-bottom: 5px;
+  }
+  
+  .input__field {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+    border: none;
+    outline: none;
+    padding: 0;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    color: black;
+    font-size: 13px;
+    border-bottom: 1px solid #E8E8E8;
+  }
+  
+  .input__error {
+    display: block;
+    font-size: 10px;
+    color: #ee3465;
+    height: 12px;
+  }
+  
+  .unauth-page__input {
+    margin-bottom: 2px;
+  }
+
+  .input__field:focus {
+    border-bottom: 1px solid #3456F3;
+  }
+  
+  .input__label_type_profile {
+    display: none;
+  }
