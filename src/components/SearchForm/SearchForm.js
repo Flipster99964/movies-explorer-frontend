@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Button from "../Button/Button";
-import useCustomValidation from "../../hooks/useCustomValidation";
+import { useCustomValidation } from "../../hooks/useCustomValidation";
 import { beatFilmApi } from "../../utils/MoviesApi";
 
 import "./SearchForm.css";
@@ -11,6 +11,14 @@ function SearchForm({ setMovies, setIsLoading, onSavedPage }) {
   const [errorText, setErrorText] = useState("");
   const { values, setValues, errors, handleChange, isFormValid } =
     useCustomValidation();
+  const dataFromStorage = localStorage.getItem("queryData");
+
+  useEffect(() => {
+    if (dataFromStorage && onSavedPage) {
+      const query = JSON.parse(dataFromStorage).searchQuery;
+      setValues({ ...values, ["film-query"]: query });
+    }
+  }, [dataFromStorage, setValues, onSavedPage, values]);
 
   const filterMovies = async (searchQuery) => {
     setIsLoading(true);
@@ -24,6 +32,12 @@ function SearchForm({ setMovies, setIsLoading, onSavedPage }) {
       movie.nameRU.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setMovies(filteredMovies);
+
+    const queryData = {
+      searchQuery,
+      filteredMovies,
+  };
+  localStorage.setItem("queryData", JSON.stringify(queryData));
   };
 
   const handleSubmitFrom = (e) => {
@@ -55,7 +69,6 @@ function SearchForm({ setMovies, setIsLoading, onSavedPage }) {
           required
           onChange={handleChange}
           value={values["film-query"] || ""}
-          autocomplete="off"
         />
         <Button
           className="button button_type_search button_type_blue"

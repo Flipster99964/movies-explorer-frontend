@@ -16,7 +16,14 @@ function Movies() {
   const { onSavedPage, setOnSavedPage } = useContext(savedPageContext);
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const queryData = localStorage.getItem("queryData");
   useEffect(() => setOnSavedPage(false), [setOnSavedPage]);
+
+  useEffect(() => {
+    if (queryData) {
+      setMovies(JSON.parse(queryData).filteredMovies);
+    }
+  }, [queryData]);
   
   return (
     <>
@@ -25,6 +32,7 @@ function Movies() {
         <SearchForm
             setMovies={setMovies}
             setIsLoading={setIsLoading}
+            onSavedPage={onSavedPage}
           />
           {isLoading ? <Preloader /> : <MoviesCardList data={movies} />}
           {!isLoading && movies && (
