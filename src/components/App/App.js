@@ -85,6 +85,20 @@ function App() {
       .finally(() => setIsLoading(false));
   }
 
+  function updateUserInfo(userDataFromForm) {
+    setIsLoading(true);
+    mainApi
+      .editCurrentUserInfo(userDataFromForm, token)
+      .then((userDataUpdated) => {
+        setCurrentUser({
+          name: userDataUpdated.name,
+          email: userDataUpdated.email,
+        });
+      })
+      .catch((e) => console.log(e))
+      .finally(() => setIsLoading(false));
+  }
+
     return (
       <currentUserContext.Provider value={{ currentUser, setCurrentUser }}>
         <savedPageContext.Provider value={{ onSavedPage, setOnSavedPage }}>
@@ -93,7 +107,7 @@ function App() {
               <Route exact path="/" element={<Main /> } />
               <Route path="/movies" element={<RequireAuth> <Movies /> </RequireAuth>} isLoggedIn={isLoggedIn} />
               <Route path="/saved-movies" element={<RequireAuth> <SavedMovies /> </RequireAuth>} isLoggedIn={isLoggedIn} />
-              <Route path="/profile" element={<RequireAuth> <Profile /> </RequireAuth>} isLoggedIn={isLoggedIn} />
+              <Route path="/profile" element={<RequireAuth> <Profile /> </RequireAuth>} submitHandler={updateUserInfo} isLoggedIn={isLoggedIn} />
               <Route path="/signup" element={<Register submitHandler={registerUser} isLoading={isLoading} />} />
               <Route path="/signin" element={<Login submitHandler={loginUser} isLoading={isLoading} />} />
               <Route path="/404" element={<NotFound />} />
