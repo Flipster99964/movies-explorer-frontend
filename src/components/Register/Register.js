@@ -32,7 +32,7 @@ function Register({ submitHandler, isLoading }) {
             name="name"
             label="Имя"
             modifier="unauth"
-            value={values["name"] || ""}
+            value={values.name || ""}
             error={errors["name"]}
             onChange={handleChange}
             type="text"
@@ -63,10 +63,11 @@ function Register({ submitHandler, isLoading }) {
         </fieldset>
         <Button
           className={`register__button button_type_blue button_type_submit ${
-            !isFormValid && "button_type_disabled"
+            isFormValid && "button_type_disabled"
           }`}
           type="submit"
           disabled={!isFormValid}
+          isLoading={isLoading}
         >
           {isLoading ? "Загрузка" : "Зарегистрироваться"}
         </Button>

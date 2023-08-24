@@ -13,6 +13,7 @@ import "./Profile.css";
 
 function Profile({ setIsLoggedIn, submitHandler }) {
   const { currentUser, setCurrentUser } = useContext(currentUserContext);
+  
   const {
     values,
     errors,
@@ -36,7 +37,7 @@ function Profile({ setIsLoggedIn, submitHandler }) {
   const signOut = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
-    history.push("/signin");
+    history("/signin");
     setCurrentUser({
       name: "",
       email: "",

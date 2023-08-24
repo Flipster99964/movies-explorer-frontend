@@ -1,4 +1,4 @@
-export const BASE_URL = "https://api.flipster99964.student.nomoredomains.club";
+export const BASE_URL = "http://localhost:3001";
 
 const checkServerResponse = (res) => {
   if (res.ok) {
@@ -7,7 +7,7 @@ const checkServerResponse = (res) => {
   return Promise.reject(res);
 };
 
-export const register = (event, name, email, password) => {
+export const register = (name, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {

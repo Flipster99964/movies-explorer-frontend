@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
+import { Route, Routes, Navigate, useNavigate, useLocation } from "react-router-dom";
 
 import "./App.css";
 import Main from "../Main/Main";
@@ -23,15 +23,22 @@ function App() {
     name: "",
     email: "",
   });
+  const [popupError, setPopupError] = useState("");
+  const [popupErrorStatus, setPopupErrorStatus] = useState(false);
   const token = localStorage.getItem("token");
   const history = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    if (token) {
+    if (token && !popupErrorStatus) {
       setIsLoggedIn(true);
-      history.push("/movies");
+      if (location.pathname === "/signup" || location.pathname === "/signin") {
+        history("/movies");
+      } else {
+        history(location.pathname);
+      }
     }
-  }, [token, isLoggedIn, history]);
+  }, [token, isLoggedIn, history, location.pathname]);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -75,7 +82,7 @@ function App() {
       .then((data) => {
         if (data.token) {
           setIsLoggedIn(true);
-          history.push("/movies");
+          history("/movies");
         }
       })
       .catch((e) => {
