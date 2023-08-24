@@ -46,3 +46,9 @@
   .button_type_white-text {
     color: white;
   }
+
+  .button_type_disabled {
+    opacity: 0.2;
+    pointer-events: none;
+  }
+  
