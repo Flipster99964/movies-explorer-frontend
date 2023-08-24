@@ -44,7 +44,7 @@ function MoviesCard({ nameRU, duration, imageUrl, link }) {
             ? (<Delete />)
             : (isSaved
               ? (<LikeActive />)
-              : "Сохранить")}
+              : <Like />)}
         </Button>
       </div>
     </li>

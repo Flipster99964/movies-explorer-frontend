@@ -7,8 +7,9 @@ function MoviesCardList({ data }) {
   return (
     <section className="movies-list_section">
     <ul className="movies-list">
+    <MoviesCard nameRU = "тест"></MoviesCard>
     {data && data.map((movie) => (
-        <MoviesCard key={movie.id} imageUrl={movie.image.url} link={movie.trailerLink} {...movie} />
+        <MoviesCard nameRU = "тест" key={movie.id} imageUrl={movie.image.url} link={movie.trailerLink} {...movie} />
       ))}
     </ul>
     </section>

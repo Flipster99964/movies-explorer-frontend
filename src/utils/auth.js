@@ -1,4 +1,4 @@
-export const BASE_URL = "https://flipster99964.students.nomoredomains.club";
+export const BASE_URL = "https://api.flipster99964.student.nomoredomains.club";
 
 const checkServerResponse = (res) => {
   if (res.ok) {
@@ -7,16 +7,16 @@ const checkServerResponse = (res) => {
   return Promise.reject(res);
 };
 
-export const register = (name, email, password) => {
+export const register = (event, name, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
+      name,
       email,
       password,
-      name,
     }),
   }).then((res) => checkServerResponse(res));
 };

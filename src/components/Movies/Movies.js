@@ -79,9 +79,9 @@ function Movies() {
           {!isLoading && movies.length === 0 && (
             <p className="movies__message">Ничего не найдено</p>
           )}
-          {/* <div className="movies__footer">
+          <div className="movies__footer">
             <Button className="button_type_more">Ещё</Button>
-          </div> */}
+          </div>
         </section>
       <Footer />
     </>
