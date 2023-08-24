@@ -85,4 +85,4 @@ export const UseCustomValidation = () => {
   };
 };
 
-export default useCustomValidation;
+export default UseCustomValidation;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import Button from "../Button/Button";
-import { useCustomValidation } from "../../hooks/useCustomValidation";
+import { UseCustomValidation } from "../../hooks/useCustomValidation";
 import { beatFilmApi } from "../../utils/MoviesApi";
 
 import "./SearchForm.css";
@@ -11,7 +11,7 @@ function SearchForm({ checkboxHandler, submitHandler }) {
   const [errorText, setErrorText] = useState("");
   const [shortFilmsCheck, setShortFilmsCheck] = useState(false);
   const { values, setValues, errors, handleChange, isFormValid } =
-    useCustomValidation();
+    UseCustomValidation();
 
     const onClickCheckBox = () => {
       setShortFilmsCheck(!shortFilmsCheck);
