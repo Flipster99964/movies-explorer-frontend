@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
 
 import "./App.css";
@@ -18,6 +18,14 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const history = useNavigate();
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (token) {
+      setIsLoggedIn(true);
+      history.push("/movies");
+    }
+  }, [history, setIsLoggedIn, token]);
 
   function registerUser(name, email, password) {
     setIsLoading(true);
@@ -64,7 +72,7 @@ function App() {
       <savedPageContext.Provider value={{ onSavedPage, setOnSavedPage }}>
       <div className="app">
         <Routes>
-          <Route exact path="/" element={<RequireAuth> <Main /> </RequireAuth>} isLoggedIn={isLoggedIn} />
+          <Route exact path="/" element={<Main /> } />
           <Route path="/movies" element={<RequireAuth> <Movies /> </RequireAuth>} isLoggedIn={isLoggedIn} />
           <Route path="/saved-movies" element={<RequireAuth> <SavedMovies /> </RequireAuth>} isLoggedIn={isLoggedIn} />
           <Route path="/profile" element={<RequireAuth> <Profile /> </RequireAuth>} isLoggedIn={isLoggedIn} />
