@@ -11,21 +11,38 @@ import Login from "../Login/Login";
 import Profile from "../Profile/Profile";
 import savedPageContext from "../../context/saved-page-context";
 import RequireAuth from "../ProtectedRoute/ProtectedRoute";
+import currentUserContext from "../../context/currentUserContext";
+import { mainApi } from "../../utils/MainApi";
 import * as auth from "../../utils/auth";
 
 function App() {
   const [onSavedPage, setOnSavedPage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const history = useNavigate();
+  const [currentUser, setCurrentUser] = useState({
+    name: "",
+    email: "",
+  });
   const token = localStorage.getItem("token");
+  const history = useNavigate();
 
   useEffect(() => {
     if (token) {
       setIsLoggedIn(true);
       history.push("/movies");
     }
-  }, [history, setIsLoggedIn, token]);
+  }, [token, isLoggedIn, history]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      mainApi
+        .getCurrentUserInfo(token)
+        .then(([response]) => {
+          setCurrentUser(response);
+        })
+        .catch((e) => console.log(e));
+    }
+  }, [token, isLoggedIn]);
 
   function registerUser(name, email, password) {
     setIsLoading(true);
@@ -69,20 +86,22 @@ function App() {
   }
 
     return (
-      <savedPageContext.Provider value={{ onSavedPage, setOnSavedPage }}>
-      <div className="app">
-        <Routes>
-          <Route exact path="/" element={<Main /> } />
-          <Route path="/movies" element={<RequireAuth> <Movies /> </RequireAuth>} isLoggedIn={isLoggedIn} />
-          <Route path="/saved-movies" element={<RequireAuth> <SavedMovies /> </RequireAuth>} isLoggedIn={isLoggedIn} />
-          <Route path="/profile" element={<RequireAuth> <Profile /> </RequireAuth>} isLoggedIn={isLoggedIn} />
-          <Route path="/signup" element={<Register submitHandler={registerUser} isLoading={isLoading} />} />
-          <Route path="/signin" element={<Login submitHandler={loginUser} isLoading={isLoading} />} />
-          <Route path="/404" element={<NotFound />} />
-          <Route path="/*" element={<Main />} />
-        </Routes>
-      </div>
-      </savedPageContext.Provider>
+      <currentUserContext.Provider value={{ currentUser, setCurrentUser }}>
+        <savedPageContext.Provider value={{ onSavedPage, setOnSavedPage }}>
+          <div className="app">
+            <Routes>
+              <Route exact path="/" element={<Main /> } />
+              <Route path="/movies" element={<RequireAuth> <Movies /> </RequireAuth>} isLoggedIn={isLoggedIn} />
+              <Route path="/saved-movies" element={<RequireAuth> <SavedMovies /> </RequireAuth>} isLoggedIn={isLoggedIn} />
+              <Route path="/profile" element={<RequireAuth> <Profile /> </RequireAuth>} isLoggedIn={isLoggedIn} />
+              <Route path="/signup" element={<Register submitHandler={registerUser} isLoading={isLoading} />} />
+              <Route path="/signin" element={<Login submitHandler={loginUser} isLoading={isLoading} />} />
+              <Route path="/404" element={<NotFound />} />
+              <Route path="/*" element={<Main />} />
+            </Routes>
+          </div>
+        </savedPageContext.Provider>
+      </currentUserContext.Provider>
       );
 }
 
