@@ -2,7 +2,8 @@ import React, { useState } from "react";
 
 import Button from "../Button/Button";
 import { UseCustomValidation } from "../../hooks/useCustomValidation";
-import { beatFilmApi } from "../../utils/MoviesApi";
+import { UseCheckFormValidity } from "../../hooks/UseCheckFormValidity";
+import { countInputs } from "../../utils/countInputs";
 
 import "./SearchForm.css";
 
@@ -10,15 +11,18 @@ import "./SearchForm.css";
 function SearchForm({ checkboxHandler, submitHandler }) {
   const [errorText, setErrorText] = useState("");
   const [shortFilmsCheck, setShortFilmsCheck] = useState(false);
-  const { values, setValues, errors, handleChange, isFormValid } =
+  const { values, errors, handleChange, isFormValid, setIsFormValid } =
     UseCustomValidation();
+  const amountInputs = countInputs(".search-form__input");
+
+  UseCheckFormValidity(values, errors, amountInputs, setIsFormValid);
 
     const onClickCheckBox = () => {
       setShortFilmsCheck(!shortFilmsCheck);
       checkboxHandler(shortFilmsCheck);
-    }
+    };
 
-    const onSubmitForm = async (e) => {
+    const onSubmitForm = (e) => {
     e.preventDefault();
     if (values["film-query"] === undefined) {
       setErrorText("Запрос не может быть пустым");
@@ -26,6 +30,7 @@ function SearchForm({ checkboxHandler, submitHandler }) {
     }
     if (isFormValid) {
       submitHandler(shortFilmsCheck, values["film-query"]);
+      setErrorText("");
     }
     setErrorText(errors["film-query"]);
   };

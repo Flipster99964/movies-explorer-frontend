@@ -1,24 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import UnauthPage from "../UnauthPage/UnauthPage";
 
+import { UseCustomValidation } from "../../hooks/useCustomValidation";
+import { UseCheckFormValidity } from "../../hooks/UseCheckFormValidity";
+import { countInputs } from "../../utils/countInputs";
+
 import "./Register.css";
 
 function Register({ submitHandler, isLoading }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const { values, errors, handleChange, isFormValid, setIsFormValid } =
+    UseCustomValidation();
+  const amountInputs = countInputs(".search-form__input");
+
+  UseCheckFormValidity(values, errors, amountInputs, setIsFormValid);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    submitHandler(name, email, password, setEmail, setPassword, setName);
+    submitHandler(values["name"], values["email"], values["password"]);
   };
 
   return (
     <UnauthPage 
       title="Добро пожаловать! ">
-      <form className="register" name="register" onSubmit={onSubmit}>
+      <form className="register" name="register" onSubmit={onSubmit} noValidate>
       <fieldset className="register__inputs">
           <Input
             maxlength="20"
@@ -26,19 +32,21 @@ function Register({ submitHandler, isLoading }) {
             name="name"
             label="Имя"
             modifier="unauth"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={values["name"] || ""}
+            error={errors["name"]}
+            onChange={handleChange}
             type="text"
-            required
+            autoComplete="off"
           />
           <Input
             name="email"
             label="E-mail"
             modifier="unauth"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={values["email"] || ""}
+            error={errors["email"]}
+            onChange={handleChange}
             type="email"
-            required
+            autoComplete="off"
           />
           <Input
             maxlength="25"
@@ -47,12 +55,19 @@ function Register({ submitHandler, isLoading }) {
             label="Пароль"
             type="password"
             modifier="unauth"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
+            value={values["password"] || ""}
+            error={errors["password"]}
+            onChange={handleChange}
+            autoComplete="off"
           />
         </fieldset>
-        <Button className="button_type_blue button_type_submit register__button" type="submit">
+        <Button
+          className={`register__button button_type_blue button_type_submit ${
+            !isFormValid && "button_type_disabled"
+          }`}
+          type="submit"
+          disabled={!isFormValid}
+        >
           {isLoading ? "Загрузка" : "Зарегистрироваться"}
         </Button>
         <p className="register__text">

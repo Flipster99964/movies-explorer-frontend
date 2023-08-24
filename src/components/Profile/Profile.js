@@ -6,14 +6,25 @@ import Header from "../Header/Header";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 import currentUserContext from "../../context/currentUserContext";
-import { useBrowserValidation } from "../../hooks/useBrowserValidation";
+import { UseCustomValidation } from "../../hooks/useCustomValidation";
+import { UseCheckFormValidity } from "../../hooks/UseCheckFormValidity";
+import { countInputs } from "../../utils/countInputs";
 import "./Profile.css";
 
 function Profile({ setIsLoggedIn, submitHandler }) {
   const { currentUser, setCurrentUser } = useContext(currentUserContext);
-  const { values, errors, isFormValid, handleChange, setValues } =
-    useBrowserValidation();
+  const {
+    values,
+    errors,
+    setValues,
+    handleChange,
+    isFormValid,
+    setIsFormValid,
+  } = UseCustomValidation();
   const history = useNavigate();
+  const amountInputs = countInputs(".input");
+
+  UseCheckFormValidity(values, errors, amountInputs, setIsFormValid);
 
   useEffect(() => {
     setValues({

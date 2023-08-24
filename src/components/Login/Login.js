@@ -23,7 +23,7 @@ function Login({ submitHandler, isLoading }) {
   return (
     <UnauthPage title="Рады видеть!">
       <form className="login" name="login" onSubmit={onSubmit} noValidate>
-        <fieldset className="login__inputs">
+        <div className="login__inputs">
           <Input
             name="email"
             label="E-mail"
@@ -46,10 +46,10 @@ function Login({ submitHandler, isLoading }) {
             minlength="8"
             autoComplete="off"
           />
-        </fieldset>
+        </div>
         <div className="login__buttons">
         <Button
-          className={`button_type_blue button_type_submit ${
+          className={`login__button button_type_blue button_type_submit ${
             !isFormValid && "button_type_disabled"
           }`}
           type="submit"
