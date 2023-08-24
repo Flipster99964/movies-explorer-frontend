@@ -1,10 +1,10 @@
-export const BASE_URL = "https://api.movies-browser.nomoredomains.work/api";
+export const BASE_URL = "https://flipster99964.students.nomoredomains.club";
 
 const checkServerResponse = (res) => {
   if (res.ok) {
     return res.json();
   }
-  return Promise.reject(`Что-то пошло не так. Обратитесь к разработчику`);
+  return Promise.reject(res);
 };
 
 export const register = (name, email, password) => {
