@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -11,8 +11,16 @@ import "./Profile.css";
 
 function Profile({ setIsLoggedIn, submitHandler }) {
   const { currentUser, setCurrentUser } = useContext(currentUserContext);
-  const { values, errors, isFormValid, handleChange } = useBrowserValidation();
+  const { values, errors, isFormValid, handleChange, setValues } =
+    useBrowserValidation();
   const history = useNavigate();
+
+  useEffect(() => {
+    setValues({
+      name: currentUser.name,
+      email: currentUser.email,
+    });
+  }, [currentUser.name, currentUser.email, setValues]);
 
   const signOut = () => {
     localStorage.removeItem("token");
