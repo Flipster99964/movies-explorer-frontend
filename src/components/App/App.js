@@ -22,6 +22,10 @@ function App() {
     email: "",
   });
   const [savedMovies, setSavedMovies] = useState([]);
+  const [profileMessage, setProfileMessage] = useState({
+    text: "",
+    status: "",
+  });
   const [popupError, setPopupError] = useState("");
   const [popupErrorStatus, setPopupErrorStatus] = useState(false);
   const token = localStorage.getItem("token");
@@ -112,11 +116,17 @@ function App() {
           name: userDataUpdated.name,
           email: userDataUpdated.email,
         });
+        setProfileMessage({ text: "Изменения сохранены", status: "success", });
+        setTimeout(() => setProfileMessage({text: "Изменения сохранены", status: ""}), 2000);
       })
-      .catch((e) => console.log(e))
+      .catch((e) => {
+        setProfileMessage({ text: e.message, status: "fail", });
+        setTimeout(() => setProfileMessage({text: e.message, status: ""}), 2000);
+        console.log(e);
+      })
       .finally(() => setIsLoading(false));
   }
-  console.dir(currentUser)
+
     return (
       <currentUserContext.Provider value={{ currentUser, setCurrentUser }}>
           <div className="app">
@@ -128,7 +138,9 @@ function App() {
               <Route path="/saved-movies" element={<RequireAuth> <SavedMovies /> </RequireAuth>} isLoggedIn={isLoggedIn}
               savedMovies={savedMovies}
               setSavedMovies={setSavedMovies} />
-              <Route path="/profile" element={<RequireAuth> <Profile /> </RequireAuth>} submitHandler={updateUserInfo} isLoggedIn={isLoggedIn} />
+              <Route path="/profile" element={<RequireAuth> <Profile /> </RequireAuth>} submitHandler={updateUserInfo}
+                message={profileMessage}
+                isLoading={isLoading} />
               <Route path="/signup" element={<Register submitHandler={registerUser} isLoading={isLoading} />} />
               <Route path="/signin" element={<Login submitHandler={loginUser} isLoading={isLoading} />} />
               <Route path="/404" element={<NotFound />} />
