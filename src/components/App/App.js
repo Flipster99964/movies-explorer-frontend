@@ -9,21 +9,19 @@ import NotFound from "../NotFound/NotFound";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
 import Profile from "../Profile/Profile";
-import savedPageContext from "../../context/saved-page-context";
 import RequireAuth from "../ProtectedRoute/ProtectedRoute";
 import currentUserContext from "../../context/currentUserContext";
 import { mainApi } from "../../utils/MainApi";
 import * as auth from "../../utils/auth";
 
 function App() {
-  const [onSavedPage, setOnSavedPage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     name: "",
     email: "",
   });
-  const [savedMovies, setSavedMovies] = useState([])
+  const [savedMovies, setSavedMovies] = useState([]);
   const [popupError, setPopupError] = useState("");
   const [popupErrorStatus, setPopupErrorStatus] = useState(false);
   const token = localStorage.getItem("token");
@@ -51,6 +49,18 @@ function App() {
         .catch((e) => console.log(e));
     }
   }, [token, isLoggedIn]);
+
+  useEffect(() => {
+    mainApi
+      .getSavedMovies(token)
+      .then((moviesData) => {
+        const ownSavedMovies = moviesData.filter(
+          (movie) => movie.owner === currentUser._id
+        );
+        setSavedMovies(ownSavedMovies);
+      })
+      .catch((e) => console.log(e));
+  }, [currentUser._id, setSavedMovies, token]);
 
   function registerUser(name, email, password) {
     setIsLoading(true);
@@ -109,7 +119,6 @@ function App() {
   console.dir(currentUser)
     return (
       <currentUserContext.Provider value={{ currentUser, setCurrentUser }}>
-        <savedPageContext.Provider value={{ onSavedPage, setOnSavedPage }}>
           <div className="app">
             <Routes>
               <Route exact path="/" element={<Main /> } />
@@ -126,7 +135,6 @@ function App() {
               <Route path="/*" element={<Main />} />
             </Routes>
           </div>
-        </savedPageContext.Provider>
       </currentUserContext.Provider>
       );
 }

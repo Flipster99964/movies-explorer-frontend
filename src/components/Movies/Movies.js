@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -9,16 +9,15 @@ import "./Movies.css";
 import Button from "../Button/Button";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import savedPageContext from "../../context/saved-page-context";
 import Preloader from "../Preloader/Preloader";
 import { findOnlyShortMovies, filterMovies } from "../../utils/filters";
 import { beatFilmApi } from "../../utils/MoviesApi";
+import { getOneIdByAnother } from "../../utils/getOneIdByAnother";
 import { UseGetWidthBrowser } from "../../hooks/UseGetWidthBrowse";
 
 import { mainApi } from "../../utils/MainApi";
 
 function Movies({ savedMovies, setSavedMovies }) {
-  const { onSavedPage, setOnSavedPage } = useContext(savedPageContext);
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [initialCardsAmount, setInitialCards] = useState(0);
@@ -29,15 +28,6 @@ function Movies({ savedMovies, setSavedMovies }) {
   const width = UseGetWidthBrowser();
   const queryData = localStorage.getItem("queryData");
   const token = localStorage.getItem("token");
-
-  useEffect(() => {
-    mainApi
-      .getSavedMovies(token)
-      .then((moviesData) => setSavedMovies(moviesData))
-      .catch((e) => console.log(e));
-  }, [token, setSavedMovies]);
-
-  useEffect(() => setOnSavedPage(false), [setOnSavedPage]);
 
   useEffect(() => {
     if (width >= 1280) {
@@ -97,6 +87,21 @@ function Movies({ savedMovies, setSavedMovies }) {
     mainApi
       .createMovie(movie, token)
       .then(() => likeHandler(true))
+      .then((newMovie) => {
+        setSavedMovies([...savedMovies, newMovie]);
+        likeHandler(true);
+      })
+      .catch((e) => console.log(e));
+  };
+
+  const deleteMovie = (movieId, likeHandler) => {
+    const idInSavedMovies = getOneIdByAnother(movieId, savedMovies)
+    mainApi
+      .removeMovie(idInSavedMovies, token)
+      .then(() => {
+        likeHandler(false);
+        setSavedMovies((state) => state.filter((m) => m._id !== idInSavedMovies));
+      })
       .catch((e) => console.log(e));
   };
 
@@ -111,7 +116,13 @@ function Movies({ savedMovies, setSavedMovies }) {
           />
           {isLoading
             ? <Preloader />
-            : <MoviesCardList data={movies} onSaveHandler={saveMovie} />}
+            : <MoviesCardList
+                allMovies={movies}
+                savedMovies={savedMovies}
+                onSaveHandler={saveMovie}
+                onDeleteHandler={deleteMovie}
+                onSavedPage={false}
+              />}
           {!isLoading && movies.length === 0 && (
             <p className="movies__message">Ничего не найдено</p>
           )}
