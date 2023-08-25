@@ -69,7 +69,7 @@ const SavedMovies = ({
 
   return (
     <div className="saved-movies-page">
-              <section
+        <section
           className="movies saved-movies-page__movies"
           aria-label="Сохраненные фильмы"
         >
@@ -86,7 +86,7 @@ const SavedMovies = ({
               onSavedPage={true}
             />
           )}
-          <p className="movies__message">{resultMessage}</p>
+          <p className="movies__message">{resultMessage || "Ничего не найдено"}</p>
         </section>
       <Footer />
     </div>

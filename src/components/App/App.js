@@ -12,6 +12,7 @@ import Profile from "../Profile/Profile";
 import RequireAuth from "../ProtectedRoute/ProtectedRoute";
 import currentUserContext from "../../context/currentUserContext";
 import { mainApi } from "../../utils/MainApi";
+import { defaultMessageError } from "../../utils/constants";
 import * as auth from "../../utils/auth";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
   });
   const [popupError, setPopupError] = useState("");
   const [popupErrorStatus, setPopupErrorStatus] = useState(false);
+  const [savedMoviesMessage, setSavedMoviesMessage] = useState("");
   const token = localStorage.getItem("token");
   const history = useNavigate();
   const location = useLocation();
@@ -61,9 +63,14 @@ function App() {
         const ownSavedMovies = moviesData.filter(
           (movie) => movie.owner === currentUser._id
         );
+        localStorage.setItem("savedMovies", JSON.stringify(ownSavedMovies));
         setSavedMovies(ownSavedMovies);
+        setSavedMoviesMessage("");
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        setSavedMoviesMessage(defaultMessageError);
+        console.log(e);
+      });
   }, [currentUser._id, setSavedMovies, token]);
 
   function registerUser(name, email, password) {
@@ -137,7 +144,9 @@ function App() {
               setSavedMovies={setSavedMovies}/>
               <Route path="/saved-movies" element={<RequireAuth> <SavedMovies /> </RequireAuth>} isLoggedIn={isLoggedIn}
               savedMovies={savedMovies}
-              setSavedMovies={setSavedMovies} />
+              setSavedMovies={setSavedMovies}
+              message={savedMoviesMessage}
+               />
               <Route path="/profile" element={<RequireAuth> <Profile /> </RequireAuth>} submitHandler={updateUserInfo}
                 message={profileMessage}
                 isLoading={isLoading} />

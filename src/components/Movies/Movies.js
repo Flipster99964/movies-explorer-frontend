@@ -5,7 +5,6 @@ import Footer from "../Footer/Footer";
 import Container from "../Container/Container";
 import Icons from "../Icons/Icons";
 import MoviesCard from "../MoviesCard/MoviesCard";
-import "./Movies.css";
 import Button from "../Button/Button";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
@@ -14,8 +13,9 @@ import { findOnlyShortMovies, filterMovies } from "../../utils/filters";
 import { beatFilmApi } from "../../utils/MoviesApi";
 import { getOneIdByAnother } from "../../utils/getOneIdByAnother";
 import { UseGetWidthBrowser } from "../../hooks/UseGetWidthBrowse";
-
+import { defaultMessageError } from "../../utils/constants";
 import { mainApi } from "../../utils/MainApi";
+import "./Movies.css";
 
 function Movies({ savedMovies, setSavedMovies }) {
   const [movies, setMovies] = useState([]);
@@ -76,7 +76,7 @@ function Movies({ savedMovies, setSavedMovies }) {
       setIsLoading(false);
     } catch (e) {
       setMovies([]);
-      setErrorMessage("Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз");
+      setErrorMessage(defaultMessageError);
       console.log(e);
       setIsLoading(false);
     }
