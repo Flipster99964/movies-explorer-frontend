@@ -16,13 +16,13 @@ import { mainApi } from "../../utils/MainApi";
 import * as auth from "../../utils/auth";
 
 function App() {
-  const [onSavedPage, setOnSavedPage] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     name: "",
     email: "",
   });
+  const [onSavedPage, setOnSavedPage] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [popupError, setPopupError] = useState("");
   const [popupErrorStatus, setPopupErrorStatus] = useState(false);
   const token = localStorage.getItem("token");
@@ -105,7 +105,7 @@ function App() {
       .catch((e) => console.log(e))
       .finally(() => setIsLoading(false));
   }
-
+  console.dir(currentUser)
     return (
       <currentUserContext.Provider value={{ currentUser, setCurrentUser }}>
         <savedPageContext.Provider value={{ onSavedPage, setOnSavedPage }}>

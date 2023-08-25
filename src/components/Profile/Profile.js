@@ -13,7 +13,7 @@ import "./Profile.css";
 
 function Profile({ setIsLoggedIn, submitHandler }) {
   const { currentUser, setCurrentUser } = useContext(currentUserContext);
-  
+  console.dir(currentUser)
   const {
     values,
     errors,
@@ -21,13 +21,14 @@ function Profile({ setIsLoggedIn, submitHandler }) {
     handleChange,
     isFormValid,
     setIsFormValid,
-  } = UseCustomValidation();
+  } = UseCustomValidation(currentUser.name, currentUser.email);
   const history = useNavigate();
   const amountInputs = countInputs(".input");
 
   UseCheckFormValidity(values, errors, amountInputs, setIsFormValid);
 
   useEffect(() => {
+    console.dir(currentUser.name)
     setValues({
       name: currentUser.name,
       email: currentUser.email,
@@ -36,8 +37,11 @@ function Profile({ setIsLoggedIn, submitHandler }) {
 
   const signOut = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("queryData");
+    localStorage.removeItem("savedMovies");
+    localStorage.removeItem("allMoviesData");
     setIsLoggedIn(false);
-    history("/signin");
+    history("/");
     setCurrentUser({
       name: "",
       email: "",

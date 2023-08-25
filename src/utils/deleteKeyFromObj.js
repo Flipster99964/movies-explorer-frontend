@@ -1,7 +1,5 @@
-export const deleteKeyFromObj = (object, array) => {
+export const deleteKeyFromObj = (object, keyName) => {
     const result = Object.assign({}, object);
-    for (let i = 0; i < array.length; i++) {
-      delete result[array[i]];
-    }
+    delete result[keyName];
     return result;
   };

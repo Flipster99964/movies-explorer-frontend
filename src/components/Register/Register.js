@@ -12,7 +12,7 @@ import "./Register.css";
 function Register({ submitHandler, isLoading }) {
   const { values, errors, handleChange, isFormValid, setIsFormValid } =
     UseCustomValidation();
-  const amountInputs = countInputs(".search-form__input");
+  const amountInputs = countInputs(".input");
 
   UseCheckFormValidity(values, errors, amountInputs, setIsFormValid);
 
