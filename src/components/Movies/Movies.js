@@ -24,6 +24,7 @@ function Movies({ savedMovies, setSavedMovies }) {
   const [cardsPage, setCardsPage] = useState(0);
   const [cardsInBundle, setCardsInBundle] = useState(0);
   const [shortFilmsCheck, setShortFilmsCheck] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const cardsCount = initialCardsAmount + cardsInBundle * cardsPage;
   const width = UseGetWidthBrowser();
   const queryData = localStorage.getItem("queryData");
@@ -46,10 +47,13 @@ function Movies({ savedMovies, setSavedMovies }) {
   let filteredShortMovies = JSON.parse(queryData)?.filteredShortMovies || [];
 
   useEffect(() => {
-    shortFilmsCheck
+    if (!errorMessage) {
+      shortFilmsCheck
       ? setMovies(filteredShortMovies.slice(0, cardsCount))
       : setMovies(filteredMovies.slice(0, cardsCount));
-  }, [shortFilmsCheck, cardsCount]);
+    }
+
+  }, [shortFilmsCheck, cardsCount, errorMessage]);
 
   const submitHandler = async (isOnlyShortFilms, searchQuery) => {
     try {
@@ -68,8 +72,11 @@ function Movies({ savedMovies, setSavedMovies }) {
       ? setMovies(filteredShortMovies.slice(0, initialCardsAmount))
       : setMovies(filteredMovies.slice(0, initialCardsAmount));
 
+      setErrorMessage("")
       setIsLoading(false);
     } catch (e) {
+      setMovies([]);
+      setErrorMessage("Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз");
       console.log(e);
       setIsLoading(false);
     }
@@ -77,8 +84,11 @@ function Movies({ savedMovies, setSavedMovies }) {
 
   const moreButtonHandler = () => setCardsPage((prev) => prev + 1);
 
-  const MoreButton = () => (
-    <Button className="button_type_more" handler={moreButtonHandler}>
+  const MoreButton = ({ displayed }) => (
+    <Button
+      className={`button_type_more ${displayed ? "button_type_hidden" : ""}`}
+      handler={moreButtonHandler}
+    >
       Ещё
     </Button>
   );
@@ -124,14 +134,14 @@ function Movies({ savedMovies, setSavedMovies }) {
                 onSavedPage={false}
               />}
           {!isLoading && movies.length === 0 && (
-            <p className="movies__message">Ничего не найдено</p>
+            <p className="movies__message">{errorMessage || "Ничего не найдено"}</p>
           )}
           <div className="movies__footer">
             {shortFilmsCheck
               ? cardsCount < filteredShortMovies.length &&
-                !isLoading && <MoreButton />
+                !isLoading && <MoreButton displayed={errorMessage}/>
               : cardsCount < filteredMovies.length &&
-                !isLoading && <MoreButton />}
+                !isLoading && <MoreButton displayed={errorMessage}/>}
           </div>
         </section>
       <Footer />
