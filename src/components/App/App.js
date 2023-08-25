@@ -30,6 +30,7 @@ function App() {
   const [popupError, setPopupError] = useState("");
   const [popupErrorStatus, setPopupErrorStatus] = useState(false);
   const [savedMoviesMessage, setSavedMoviesMessage] = useState("");
+  const [unauthPageMessage, setUnauthPageMessage] = useState("")
   const token = localStorage.getItem("token");
   const history = useNavigate();
   const location = useLocation();
@@ -79,22 +80,18 @@ function App() {
       .register(name, email, password)
       .then((res) => {
         if (res) {
-          // автологин
           loginUser(email, password);
-          // setIsSuccessReg(true);
-        } else {
-          console.log("Что-то пошло не так");
-          // setIsSuccessReg(false);
+          setUnauthPageMessage("");
         }
       })
-      .catch((e) => {
-        console.log(e);
-        // setIsSuccessReg(false);
+      .catch((e) => e.json())
+      .then((e) => {
+        if (e?.message) {
+          setUnauthPageMessage(e.message);
+        }
       })
-      .finally(() => {
-        // setIsInfoToolTipOpen(true);
-        setIsLoading(false);
-      });
+      .catch((e) => console.log(e))
+      .finally(() => setIsLoading(false));
   }
 
   function loginUser(email, password) {
@@ -105,12 +102,17 @@ function App() {
         if (data.token) {
           setIsLoggedIn(true);
           history("/movies");
+          setUnauthPageMessage("");
         }
       })
-      .catch((e) => {
-        console.log(e);
+      .catch((e) => e.json())
+      .then((e) => {
+        if (e?.message) {
+          setUnauthPageMessage(e.message);
+        }
         setIsLoggedIn(false);
       })
+      .catch((e) => console.log(e))
       .finally(() => setIsLoading(false));
   }
 
@@ -150,8 +152,19 @@ function App() {
               <Route path="/profile" element={<RequireAuth> <Profile /> </RequireAuth>} submitHandler={updateUserInfo}
                 message={profileMessage}
                 isLoading={isLoading} />
-              <Route path="/signup" element={<Register submitHandler={registerUser} isLoading={isLoading} />} />
-              <Route path="/signin" element={<Login submitHandler={loginUser} isLoading={isLoading} />} />
+              <Route path="/signup"
+                element={
+                <Register message={unauthPageMessage}
+                setMessage={setUnauthPageMessage}
+                submitHandler={registerUser} isLoading={isLoading}
+              />} />
+              <Route path="/signin" element=
+              {<Login 
+              submitHandler={loginUser} 
+              isLoading={isLoading} 
+              message={unauthPageMessage}
+              setMessage={setUnauthPageMessage}
+              />} />
               <Route path="/404" element={<NotFound />} />
               <Route path="/*" element={<Main />} />
             </Routes>

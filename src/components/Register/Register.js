@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import UnauthPage from "../UnauthPage/UnauthPage";
@@ -9,12 +10,14 @@ import { countInputs } from "../../utils/countInputs";
 
 import "./Register.css";
 
-function Register({ submitHandler, isLoading }) {
+function Register({ submitHandler, isLoading, message, setMessage }) {
   const { values, errors, handleChange, isFormValid, setIsFormValid } =
     UseCustomValidation();
   const amountInputs = countInputs(".input");
 
   UseCheckFormValidity(values, errors, amountInputs, setIsFormValid);
+
+  useEffect(() => setMessage(""), [setMessage]);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -61,6 +64,13 @@ function Register({ submitHandler, isLoading }) {
             autoComplete="off"
           />
         </fieldset>
+        <p
+          className={`unauth-page__message ${
+            message ? "unauth-page__message_type_fail" : ""
+          }`}
+        >
+          {message}
+        </p>
         <Button
           className={`register__button button_type_blue button_type_submit ${
             isFormValid && "button_type_disabled"
@@ -69,7 +79,7 @@ function Register({ submitHandler, isLoading }) {
           disabled={!isFormValid}
           isLoading={isLoading}
         >
-          {isLoading ? "Загрузка" : "Зарегистрироваться"}
+          {isLoading ? "Загрузка..." : "Зарегистрироваться"}
         </Button>
         <p className="register__text">
           Уже зарегистрированы?{" "}
