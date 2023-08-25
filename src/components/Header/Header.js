@@ -14,7 +14,7 @@ function Header({ className }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   {/*const isAuth = true; // для смены кнопок*/}
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const {currentUser, setCurrentUser} = useContext(currentUserContext);
+  const { currentUser, setCurrentUser } = useContext(currentUserContext);
 
   const sidebarHandler = () => setIsSidebarOpen(!isSidebarOpen);
  
@@ -32,7 +32,9 @@ function Header({ className }) {
       </a>
       {isLoggedIn && (
         <nav className="header__nav">
-          <ul className="header__links">
+          <ul className={`header__links ${isLoggedIn
+            ? ""
+            : "header__links_type_hidden"}`}>
             <NavLink
               type="button"
               className="header__link"

@@ -15,7 +15,9 @@ import { findOnlyShortMovies, filterMovies } from "../../utils/filters";
 import { beatFilmApi } from "../../utils/MoviesApi";
 import { UseGetWidthBrowser } from "../../hooks/UseGetWidthBrowse";
 
-function Movies() {
+import { mainApi } from "../../utils/MainApi";
+
+function Movies({ savedMovies, setSavedMovies }) {
   const { onSavedPage, setOnSavedPage } = useContext(savedPageContext);
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -26,6 +28,14 @@ function Movies() {
   const cardsCount = initialCardsAmount + cardsInBundle * cardsPage;
   const width = UseGetWidthBrowser();
   const queryData = localStorage.getItem("queryData");
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    mainApi
+      .getSavedMovies(token)
+      .then((moviesData) => setSavedMovies(moviesData))
+      .catch((e) => console.log(e));
+  }, [token, setSavedMovies]);
 
   useEffect(() => setOnSavedPage(false), [setOnSavedPage]);
 
@@ -83,7 +93,6 @@ function Movies() {
     </Button>
   );
 
-  
   return (
     <>
         <section className="movies app__movies" aria-label="Фильмы">
@@ -93,7 +102,9 @@ function Movies() {
             checkbox={shortFilmsCheck}
             setCheckbox={setShortFilmsCheck}
           />
-          {isLoading ? <Preloader /> : <MoviesCardList data={movies} />}
+          {isLoading
+            ? <Preloader />
+            : <MoviesCardList data={movies} />}
           {!isLoading && movies.length === 0 && (
             <p className="movies__message">Ничего не найдено</p>
           )}

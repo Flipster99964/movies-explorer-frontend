@@ -16,13 +16,14 @@ import { mainApi } from "../../utils/MainApi";
 import * as auth from "../../utils/auth";
 
 function App() {
+  const [onSavedPage, setOnSavedPage] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     name: "",
     email: "",
   });
-  const [onSavedPage, setOnSavedPage] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [savedMovies, setSavedMovies] = useState([])
   const [popupError, setPopupError] = useState("");
   const [popupErrorStatus, setPopupErrorStatus] = useState(false);
   const token = localStorage.getItem("token");
@@ -112,8 +113,12 @@ function App() {
           <div className="app">
             <Routes>
               <Route exact path="/" element={<Main /> } />
-              <Route path="/movies" element={<RequireAuth> <Movies /> </RequireAuth>} isLoggedIn={isLoggedIn} />
-              <Route path="/saved-movies" element={<RequireAuth> <SavedMovies /> </RequireAuth>} isLoggedIn={isLoggedIn} />
+              <Route path="/movies" element={<RequireAuth> <Movies /> </RequireAuth>} isLoggedIn={isLoggedIn} 
+              savedMovies={savedMovies}
+              setSavedMovies={setSavedMovies}/>
+              <Route path="/saved-movies" element={<RequireAuth> <SavedMovies /> </RequireAuth>} isLoggedIn={isLoggedIn}
+              savedMovies={savedMovies}
+              setSavedMovies={setSavedMovies} />
               <Route path="/profile" element={<RequireAuth> <Profile /> </RequireAuth>} submitHandler={updateUserInfo} isLoggedIn={isLoggedIn} />
               <Route path="/signup" element={<Register submitHandler={registerUser} isLoading={isLoading} />} />
               <Route path="/signin" element={<Login submitHandler={loginUser} isLoading={isLoading} />} />
