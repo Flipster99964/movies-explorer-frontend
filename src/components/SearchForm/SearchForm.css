@@ -44,6 +44,10 @@
     color: #000;
   }
 
+  .search-form__input_disabled {
+    color: #565656;
+  }  
+
   .search-form__input:focus{
     outline: 1px solid #3456F3;
   }
@@ -62,6 +66,11 @@
     justify-content: left;
     margin: auto;
   }
+
+  .search-form__label_disabled {
+    opacity: 0.3;
+    pointer-events: none;
+  }  
 
   .search-form__label:hover {
     opacity: 0.5;

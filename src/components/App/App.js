@@ -54,10 +54,11 @@ function App() {
           setCurrentUser(response);
         })
         .catch((e) => console.log(e));
-    }
-  }, [token, isLoggedIn]);
-
-  useEffect(() => {
+      }
+    }, [token, isLoggedIn])
+  
+    useEffect(() => {
+      if (isLoggedIn) {
     mainApi
       .getSavedMovies(token)
       .then((moviesData) => {
@@ -72,7 +73,8 @@ function App() {
         setSavedMoviesMessage(defaultMessageError);
         console.log(e);
       });
-  }, [currentUser._id, setSavedMovies, token]);
+    }
+    }, [currentUser._id, setSavedMovies]);
 
   function registerUser(name, email, password) {
     setIsLoading(true);

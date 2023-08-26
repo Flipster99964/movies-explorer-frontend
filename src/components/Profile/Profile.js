@@ -11,7 +11,7 @@ import { UseCheckFormValidity } from "../../hooks/UseCheckFormValidity";
 import { countInputs } from "../../utils/countInputs";
 import "./Profile.css";
 
-function Profile({ setIsLoggedIn, submitHandler, message }) {
+function Profile({ setIsLoggedIn, submitHandler, message, isLoading }) {
   const { currentUser, setCurrentUser } = useContext(currentUserContext);
   console.dir(currentUser)
   const {
@@ -70,6 +70,7 @@ function Profile({ setIsLoggedIn, submitHandler, message }) {
             error={errors["name"]}
             autoComplete="off"
             required
+            disabled={isLoading}
           />
           <Input 
           label="E-mail" 
@@ -80,6 +81,7 @@ function Profile({ setIsLoggedIn, submitHandler, message }) {
           value={values["email"] || ""}
           error={errors["email"]}
           autoComplete="off"
+          disabled={isLoading}
           />
         </form>
         {/*<p
@@ -94,12 +96,13 @@ function Profile({ setIsLoggedIn, submitHandler, message }) {
         <div className="profile__buttons">
           <Button
             className={`button_type_profile ${
-              !isFormValid && "button_type_disabled"
+              (!isFormValid || isLoading) && "button_type_disabled"
             }`}
             type="submit"
             isFormValid={isFormValid}
+            isLoading={isLoading}
           >
-            Редактировать
+              {isLoading ? "Сохраняем..." : "Редактировать"}
           </Button>
           <Link to="/" className="button_type_profile">
           <Button type="button" className="button_type_profile button_type_red-text" handler={signOut}>

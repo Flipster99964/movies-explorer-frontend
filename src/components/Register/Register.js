@@ -40,6 +40,7 @@ function Register({ submitHandler, isLoading, message, setMessage }) {
             onChange={handleChange}
             type="text"
             autoComplete="off"
+            disabled={isLoading}
           />
           <Input
             name="email"
@@ -50,6 +51,7 @@ function Register({ submitHandler, isLoading, message, setMessage }) {
             onChange={handleChange}
             type="email"
             autoComplete="off"
+            disabled={isLoading}
           />
           <Input
             maxlength="25"
@@ -62,6 +64,7 @@ function Register({ submitHandler, isLoading, message, setMessage }) {
             error={errors["password"]}
             onChange={handleChange}
             autoComplete="off"
+            disabled={isLoading}
           />
         </fieldset>
         <p
@@ -73,10 +76,11 @@ function Register({ submitHandler, isLoading, message, setMessage }) {
         </p>
         <Button
           className={`register__button button_type_blue button_type_submit ${
-            isFormValid && "button_type_disabled"
+            (!isFormValid || isLoading) && "button_type_disabled"
           }`}
           type="submit"
           disabled={!isFormValid}
+          isFormValid={isFormValid}
           isLoading={isLoading}
         >
           {isLoading ? "Загрузка..." : "Зарегистрироваться"}

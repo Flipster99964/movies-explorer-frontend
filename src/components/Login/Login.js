@@ -35,6 +35,7 @@ function Login({ submitHandler, isLoading, message, setMessage }) {
             error={errors["email"]}
             onChange={handleChange}
             autoComplete="off"
+            disabled={isLoading}
           />
           <Input
             name="password"
@@ -47,6 +48,7 @@ function Login({ submitHandler, isLoading, message, setMessage }) {
             maxlength="25"
             minlength="8"
             autoComplete="off"
+            disabled={isLoading}
           />
         </div>
         <p
@@ -59,10 +61,11 @@ function Login({ submitHandler, isLoading, message, setMessage }) {
         <div className="login__buttons">
         <Button
           className={`login__button button_type_blue button_type_submit ${
-            !isFormValid && "button_type_disabled"
+            (!isFormValid || isLoading) && "button_type_disabled"
           }`}
           type="submit"
-          disabled={!isFormValid}
+          isFormValid={isFormValid}
+          isLoading={isLoading}
         >
           {isLoading ? "Загрузка..." : "Войти"}
         </Button>

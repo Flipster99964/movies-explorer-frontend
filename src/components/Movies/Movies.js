@@ -123,6 +123,7 @@ function Movies({ savedMovies, setSavedMovies }) {
             submitHandler={submitHandler}
             checkbox={shortFilmsCheck}
             setCheckbox={setShortFilmsCheck}
+            isLoading={isLoading}
           />
           {isLoading
             ? <Preloader />
