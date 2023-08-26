@@ -5,7 +5,7 @@
       url: "#about",
     },
   ]
-  
+
   export const diplomaTextCards = [
     {
       id: 1,

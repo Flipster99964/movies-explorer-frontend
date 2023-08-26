@@ -58,7 +58,7 @@ function Movies({ savedMovies, setSavedMovies, cardErrorHandler }) {
       setLastSearchQuery(JSON.parse(queryData)?.searchQuery);
       setShortFilmsCheck(JSON.parse(queryData)?.isOnlyShortFilms);
     }
-  }, [queryData]);
+  }, []);
 
   useEffect(() => {
     if (!errorMessage) {
@@ -68,6 +68,14 @@ function Movies({ savedMovies, setSavedMovies, cardErrorHandler }) {
     }
 
   }, [shortFilmsCheck, cardsCount, errorMessage]);
+
+  useEffect(() => {
+    if (queryData) {
+      const updatedQueryData = JSON.parse(queryData);
+      updatedQueryData.isOnlyShortFilms = shortFilmsCheck;
+      localStorage.setItem("queryData", JSON.stringify(updatedQueryData));
+    }
+  }, [shortFilmsCheck, queryData]);
 
   const submitHandler = async (isOnlyShortFilms, searchQuery) => {
     try {
