@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-import Container from "../Container/Container";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";

@@ -11,7 +11,13 @@ import { UseCheckFormValidity } from "../../hooks/UseCheckFormValidity";
 import { countInputs } from "../../utils/countInputs";
 import "./Profile.css";
 
-function Profile({ setIsLoggedIn, submitHandler, message, isLoading }) {
+function Profile({
+  setIsLoggedIn,
+  submitHandler,
+  message,
+  isLoading,
+  messageModifier,
+}) {
   const { currentUser, setCurrentUser } = useContext(currentUserContext);
   const currentUserData = { name: currentUser.name, email: currentUser.email };
   console.dir(currentUser)
@@ -91,15 +97,15 @@ function Profile({ setIsLoggedIn, submitHandler, message, isLoading }) {
           disabled={isLoading}
           />
         </form>
-        {/*<p
+        <p
             className={`profile__error-message ${
-              message.status
-                ? `profile__error-message_type_${message.status}`
+              messageModifier
+                ? `profile__error-message_type_${messageModifier}`
                 : ""
             }`}
           >
-            {message.text}
-          </p>*/}
+            {message}
+          </p>
         <div className="profile__buttons">
           <Button
             className={`button_type_profile ${

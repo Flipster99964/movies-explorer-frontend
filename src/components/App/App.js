@@ -9,6 +9,7 @@ import NotFound from "../NotFound/NotFound";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
 import Profile from "../Profile/Profile";
+import ErrorPopup from "../ErrorPopup/ErrorPopup";
 import RequireAuth from "../ProtectedRoute/ProtectedRoute";
 import currentUserContext from "../../context/currentUserContext";
 import { mainApi } from "../../utils/MainApi";
@@ -23,17 +24,27 @@ function App() {
     email: "",
   });
   const [savedMovies, setSavedMovies] = useState([]);
-  const [profileMessage, setProfileMessage] = useState({
-    text: "",
-    status: "",
-  });
+  const [profileMessage, setProfileMessage] = useState("");
+  const [profileMessageModifier, setProfileMessageModifier] = useState(false);
+  const [savedMoviesMessage, setSavedMoviesMessage] = useState("");
+  const [unauthPageMessage, setUnauthPageMessage] = useState("");
   const [popupError, setPopupError] = useState("");
   const [popupErrorStatus, setPopupErrorStatus] = useState(false);
-  const [savedMoviesMessage, setSavedMoviesMessage] = useState("");
-  const [unauthPageMessage, setUnauthPageMessage] = useState("")
   const token = localStorage.getItem("token");
   const history = useNavigate();
   const location = useLocation();
+
+  function showProfileMessage(text, modifier) {
+    setProfileMessage(text);
+    setProfileMessageModifier(modifier);
+    setTimeout(() => setProfileMessageModifier(""), 2000);
+  }
+
+  function showPopupError(text = "Что-то пошло не так") {
+    setPopupError(text);
+    setPopupErrorStatus(true);
+    setTimeout(() => setPopupErrorStatus(false), 4000);
+  }
 
   useEffect(() => {
     if (token && !popupErrorStatus) {
@@ -50,21 +61,24 @@ function App() {
     if (isLoggedIn) {
       mainApi
         .getCurrentUserInfo(token)
-        .then(([response]) => {
-          setCurrentUser(response);
-        })
-        .catch((e) => console.log(e));
-      }
-    }, [token, isLoggedIn])
+        .then(([response]) => setCurrentUser(response))
+        .catch((e) => {
+          showPopupError(e.message);
+          setIsLoggedIn(false);
+          history("/signin");
+        });
+    }
+  }, [token, isLoggedIn, history]);
   
     useEffect(() => {
-      if (isLoggedIn) {
+      if (isLoggedIn && !popupErrorStatus) {
     mainApi
       .getSavedMovies(token)
       .then((moviesData) => {
         const ownSavedMovies = moviesData.filter(
           (movie) => movie.owner === currentUser._id
         );
+
         localStorage.setItem("savedMovies", JSON.stringify(ownSavedMovies));
         setSavedMovies(ownSavedMovies);
         setSavedMoviesMessage("");
@@ -127,33 +141,34 @@ function App() {
           name: userDataUpdated.name,
           email: userDataUpdated.email,
         });
-        setProfileMessage({ text: "Изменения сохранены", status: "success", });
-        setTimeout(() => setProfileMessage({text: "Изменения сохранены", status: ""}), 2000);
+        showProfileMessage("Изменения сохранены", "success");
       })
-      .catch((e) => {
-        setProfileMessage({ text: e.message, status: "fail", });
-        setTimeout(() => setProfileMessage({text: e.message, status: ""}), 2000);
-        console.log(e);
-      })
+      .catch((e) => showProfileMessage(e.message, "fail"))
       .finally(() => setIsLoading(false));
   }
 
     return (
       <currentUserContext.Provider value={{ currentUser, setCurrentUser }}>
           <div className="app">
+          <ErrorPopup text={popupError} isVisible={popupErrorStatus} />
             <Routes>
               <Route exact path="/" element={<Main /> } />
               <Route path="/movies" element={<RequireAuth> <Movies /> </RequireAuth>} isLoggedIn={isLoggedIn} 
               savedMovies={savedMovies}
-              setSavedMovies={setSavedMovies}/>
+              setSavedMovies={setSavedMovies}
+              cardErrorHandler={showPopupError}
+              />
               <Route path="/saved-movies" element={<RequireAuth> <SavedMovies /> </RequireAuth>} isLoggedIn={isLoggedIn}
               savedMovies={savedMovies}
               setSavedMovies={setSavedMovies}
               message={savedMoviesMessage}
+              cardErrorHandler={showPopupError}
                />
               <Route path="/profile" element={<RequireAuth> <Profile /> </RequireAuth>} submitHandler={updateUserInfo}
+                isLoading={isLoading}
                 message={profileMessage}
-                isLoading={isLoading} />
+                messageModifier={profileMessageModifier}
+                 />
               <Route path="/signup"
                 element={
                 <Register message={unauthPageMessage}
