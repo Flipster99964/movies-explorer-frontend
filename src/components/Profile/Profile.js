@@ -13,6 +13,7 @@ import "./Profile.css";
 
 function Profile({ setIsLoggedIn, submitHandler, message, isLoading }) {
   const { currentUser, setCurrentUser } = useContext(currentUserContext);
+  const currentUserData = { name: currentUser.name, email: currentUser.email };
   console.dir(currentUser)
   const {
     values,
@@ -25,7 +26,13 @@ function Profile({ setIsLoggedIn, submitHandler, message, isLoading }) {
   const history = useNavigate();
   const amountInputs = countInputs(".input");
 
-  UseCheckFormValidity(values, errors, amountInputs, setIsFormValid);
+  UseCheckFormValidity(
+    values,
+    errors,
+    amountInputs,
+    setIsFormValid,
+    currentUserData
+  );
 
   useEffect(() => {
     console.dir(currentUser.name)

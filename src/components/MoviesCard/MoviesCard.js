@@ -19,16 +19,16 @@ function MoviesCard({ onSavedPage, savedMovies, onSaveHandler, onDeleteHandler, 
 
   const handleSave = () => {
     const movieData = {
-      country: props.country,
-      director: props.director,
+      country: props.country || "Неизвестна",
+      director: props.director || "Неизвестен",
       duration: props.duration,
-      year: props.year,
-      description: props.description,
-      image: SERVER_URL + props.image.url,
-      trailerLink: props.trailerLink,
-      nameRU: props.nameRU,
-      nameEN: props.nameEN,
-      thumbnail: SERVER_URL + props.image.formats.thumbnail.url,
+      year: props.year || "Неизвестен",
+      description: props.description || "Без описания",
+      image: SERVER_URL + props.image.url || "Ошибка",
+      trailerLink: props.trailerLink || "https://www.youtube.com",
+      nameRU: props.nameRU || props.nameEN || "Неизвестно",
+      nameEN: props.nameEN || props.nameRU || "Неизвестно",
+      thumbnail: SERVER_URL + props.image.formats.thumbnail.url || "Ошибка",
       movieId: props.id,
     };
   onSaveHandler(movieData, setIsSaved);
