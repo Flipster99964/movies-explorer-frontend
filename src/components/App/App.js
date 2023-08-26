@@ -58,24 +58,13 @@ function App() {
     }
   }, [token, isLoggedIn, history, location.pathname]);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      mainApi
-        .getCurrentUserInfo(token)
-        .then(([response]) => setCurrentUser(response))
-        .catch((e) => {
-          showPopupError(e.message);
-          setIsLoggedIn(false);
-          history("/signin");
-        });
-    }
-  }, [token, isLoggedIn, history]);
   
     useEffect(() => {
       if (isLoggedIn && !popupErrorStatus) {
     mainApi
       .getSavedMovies(token)
-      .then((moviesData) => {
+      .then((res) => {
+        const moviesData = res.data
         const ownSavedMovies = moviesData.filter(
           (movie) => movie.owner === currentUser._id
         );
@@ -169,6 +158,7 @@ function App() {
                 isLoading={isLoading}
                 message={profileMessage}
                 messageModifier={profileMessageModifier}
+                setIsLoggedIn={setIsLoggedIn}
                  />
               <Route path="/signup"
                 element={

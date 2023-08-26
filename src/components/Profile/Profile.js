@@ -50,6 +50,7 @@ function Profile({
 
   const signOut = () => {
     localStorage.removeItem("token");
+    console.dir(localStorage.token)
     localStorage.removeItem("queryData");
     localStorage.removeItem("savedMovies");
     localStorage.removeItem("allMoviesData");

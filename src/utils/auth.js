@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:3001";
+export const BASE_URL = "http://api.flipster99964.student.nomoredomains.club";
 
 const checkServerResponse = (res) => {
   if (res.ok) {

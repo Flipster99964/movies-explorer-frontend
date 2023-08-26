@@ -19,10 +19,10 @@ function Header({ className }) {
   const sidebarHandler = () => setIsSidebarOpen(!isSidebarOpen);
  
   useEffect(() => {
-    currentUser.name === ""
+    localStorage.token === undefined
       ? setIsLoggedIn(false)
       : setIsLoggedIn(true);
-    }, [currentUser.name])
+    }, [localStorage.token])
 
   return (
     <Container>
