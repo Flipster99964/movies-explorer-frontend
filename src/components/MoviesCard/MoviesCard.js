@@ -4,12 +4,17 @@ import Button from "../Button/Button";
 import Like from "../Icons/Like"
 import Delete from "../Icons/Delete"
 import { getCorrectDuration } from "../../utils/getCorrectDuration";
+import {
+  SERVER_URL,
+  UNKNOWN_IMAGE_URL,
+  UNKNOWN_TRAILER_URL,
+  UNKNOWN_CARD_TEXT,
+} from "../../utils/constants";
 import LikeActive from "../Icons/LikeActive"
 import "./MoviesCard.css";
 
 function MoviesCard({ onSavedPage, savedMovies, onSaveHandler, onDeleteHandler, ...props }) {
   const [isSaved, setIsSaved] = useState(false);
-  const SERVER_URL = "https://api.nomoreparties.co/";
 
   useEffect(() => {
     if (savedMovies.some((movie) => movie.movieId === props.id)) {
@@ -19,16 +24,16 @@ function MoviesCard({ onSavedPage, savedMovies, onSaveHandler, onDeleteHandler, 
 
   const handleSave = () => {
     const movieData = {
-      country: props.country || "Неизвестна",
-      director: props.director || "Неизвестен",
+      country: props.country || UNKNOWN_CARD_TEXT,
+      director: props.director || UNKNOWN_CARD_TEXT,
       duration: props.duration,
-      year: props.year || "Неизвестен",
-      description: props.description || "Без описания",
-      image: SERVER_URL + props.image.url || "Ошибка",
-      trailerLink: props.trailerLink || "https://www.youtube.com",
-      nameRU: props.nameRU || props.nameEN || "Неизвестно",
-      nameEN: props.nameEN || props.nameRU || "Неизвестно",
-      thumbnail: SERVER_URL + props.image.formats.thumbnail.url || "Ошибка",
+      year: props.year || UNKNOWN_CARD_TEXT,
+      description: props.description || UNKNOWN_CARD_TEXT,
+      image: SERVER_URL + props.image.url || UNKNOWN_CARD_TEXT,
+      trailerLink: props.trailerLink || UNKNOWN_TRAILER_URL,
+      nameRU: props.nameRU || props.nameEN || UNKNOWN_CARD_TEXT,
+      nameEN: props.nameEN || props.nameRU || UNKNOWN_CARD_TEXT,
+      thumbnail: SERVER_URL + props.image.formats.thumbnail.url || UNKNOWN_CARD_TEXT,
       movieId: props.id,
     };
   onSaveHandler(movieData, setIsSaved);

@@ -1,5 +1,4 @@
 import React from "react";
-
 import "./Footer.css";
 
 const links = [
@@ -26,7 +25,7 @@ function Footer() {
           <p className="footer__year">&#169; 2022</p>
           <ul className="footer__links">
           <li className="footer__socials-item">
-                <a className="footer__link" target="_blank"href="https://practicum.yandex.ru/">
+                <a className="footer__link" target="_blank" href="https://practicum.yandex.ru/">
                   Яндекс.Практикум
                 </a>
               </li>
