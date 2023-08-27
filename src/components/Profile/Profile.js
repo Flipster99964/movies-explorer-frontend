@@ -20,7 +20,6 @@ function Profile({
 }) {
   const { currentUser, setCurrentUser } = useContext(currentUserContext);
   const currentUserData = { name: currentUser.name, email: currentUser.email };
-  console.dir(currentUser)
   const {
     values,
     errors,
@@ -41,7 +40,6 @@ function Profile({
   );
 
   useEffect(() => {
-    console.dir(currentUser.name)
     setValues({
       name: currentUser.name,
       email: currentUser.email,

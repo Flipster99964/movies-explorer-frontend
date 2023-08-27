@@ -47,6 +47,22 @@ function App() {
     setTimeout(() => setPopupErrorStatus(false), NOTIFICATION_DURATION);
   }
 
+    // сохраняем в контекст пользователя
+    useEffect(() => {
+      if (isLoggedIn) {
+        mainApi
+          .getCurrentUserInfo(token)
+          .then((res) => setCurrentUser(res))
+          .catch((e) => {
+            console.log(e)
+            showPopupError(e.message);
+            setIsLoggedIn(false);
+            history("/signin");
+          });
+      }
+    }, [token, isLoggedIn, history]);
+
+  // логинимся
   useEffect(() => {
     if (token && !popupErrorStatus) {
       setIsLoggedIn(true);
@@ -58,7 +74,7 @@ function App() {
     }
   }, [token, isLoggedIn, history, location.pathname]);
 
-  
+    // получаем список фильмов, сохраненных пользователем
     useEffect(() => {
       if (isLoggedIn && !popupErrorStatus) {
     mainApi
@@ -143,22 +159,11 @@ function App() {
           <ErrorPopup text={popupError} isVisible={popupErrorStatus} />
             <Routes>
               <Route exact path="/" element={<Main /> } />
-              <Route path="/movies" element={<RequireAuth> <Movies /> </RequireAuth>} isLoggedIn={isLoggedIn} 
-              savedMovies={savedMovies}
-              setSavedMovies={setSavedMovies}
-              cardErrorHandler={showPopupError}
+              <Route path="/movies" element={<RequireAuth isLoggedIn={isLoggedIn}> <Movies savedMovies={savedMovies} setSavedMovies={setSavedMovies} cardErrorHandler={showPopupError}/> </RequireAuth>}
               />
-              <Route path="/saved-movies" element={<RequireAuth> <SavedMovies /> </RequireAuth>} isLoggedIn={isLoggedIn}
-              savedMovies={savedMovies}
-              setSavedMovies={setSavedMovies}
-              message={savedMoviesMessage}
-              cardErrorHandler={showPopupError}
+              <Route path="/saved-movies" element={<RequireAuth isLoggedIn={isLoggedIn}> <SavedMovies savedMovies={savedMovies} setSavedMovies={setSavedMovies} message={savedMoviesMessage} cardErrorHandler={showPopupError}/> </RequireAuth>}
                />
-              <Route path="/profile" element={<RequireAuth> <Profile /> </RequireAuth>} submitHandler={updateUserInfo}
-                isLoading={isLoading}
-                message={profileMessage}
-                messageModifier={profileMessageModifier}
-                setIsLoggedIn={setIsLoggedIn}
+              <Route path="/profile" element={<RequireAuth isLoggedIn={isLoggedIn}> <Profile isLoading={isLoading} message={profileMessage} messageModifier={profileMessageModifier} setIsLoggedIn={setIsLoggedIn} submitHandler={updateUserInfo}/> </RequireAuth>}
                  />
               <Route path="/signup"
                 element={
@@ -173,8 +178,7 @@ function App() {
               message={unauthPageMessage}
               setMessage={setUnauthPageMessage}
               />} />
-              <Route path="/404" element={<NotFound />} />
-              <Route path="/*" element={<Main />} />
+              <Route path="/*" element={<NotFound />} />
             </Routes>
           </div>
       </currentUserContext.Provider>

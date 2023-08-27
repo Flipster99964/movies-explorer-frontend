@@ -13,7 +13,13 @@ import {
 import LikeActive from "../Icons/LikeActive"
 import "./MoviesCard.css";
 
-function MoviesCard({ onSavedPage, savedMovies, onSaveHandler, onDeleteHandler, ...props }) {
+const MoviesCard =({
+  onSavedPage,
+  savedMovies,
+  onSaveHandler,
+  onDeleteHandler,
+  ...props
+}) => {
   const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {

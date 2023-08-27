@@ -5,6 +5,14 @@
     min-height: 100vh;
     line-height: 1.21;
   }
+
+  .unauth-page__message {
+    color: black;
+  }
+
+  .unauth-page__message_type_fail {
+    color: red;
+  }
   
   @media (max-width: 768px) {
     .unauth-page {

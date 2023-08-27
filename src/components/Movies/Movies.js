@@ -32,10 +32,13 @@ function Movies({ savedMovies, setSavedMovies, cardErrorHandler }) {
   const [shortFilmsCheck, setShortFilmsCheck] = useState(false);
   const [lastSearchQuery, setLastSearchQuery] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [resultMessage, setResultMessage] = useState("");
   const cardsCount = initialCardsAmount + cardsInBundle * cardsPage;
   const width = UseGetWidthBrowser();
   const queryData = localStorage.getItem("queryData");
   const token = localStorage.getItem("token");
+  let allMovies = localStorage.getItem("allMoviesData");
+  
 
   useEffect(() => {
     if (width >= LAPTOP_WIDTH) {
@@ -80,19 +83,37 @@ function Movies({ savedMovies, setSavedMovies, cardErrorHandler }) {
   const submitHandler = async (isOnlyShortFilms, searchQuery) => {
     try {
       setIsLoading(true);
-      const allMovies = await beatFilmApi.getMovies();
-      filteredMovies = await filterMovies(searchQuery, allMovies);
+      // получаем все фильмы
+      if (!allMovies) {
+        const allMoviesData = await beatFilmApi.getMovies();
+        localStorage.setItem("allMoviesData", JSON.stringify(allMoviesData));
+        allMovies = localStorage.getItem("allMoviesData");
+      }
+      // фильтруем
+      filteredMovies = filterMovies(searchQuery, JSON.parse(allMovies));
       filteredShortMovies = findOnlyShortMovies(filteredMovies);
+      // создаем объект для сохранения в localStorage
       const queryData = {
-        allMovies,
         filteredMovies,
         filteredShortMovies,
+        searchQuery,
+        isOnlyShortFilms,
       };
       localStorage.setItem("queryData", JSON.stringify(queryData));
 
-      isOnlyShortFilms
-      ? setMovies(filteredShortMovies.slice(0, initialCardsAmount))
-      : setMovies(filteredMovies.slice(0, initialCardsAmount));
+      // следим за чекбоксом выводим результат
+      if (isOnlyShortFilms) {
+        // отображаем только первоначальное кол-во карточек, используя slice
+        setMovies(filteredShortMovies.slice(0, initialCardsAmount));
+        if (filteredShortMovies.length === 0) {
+          setResultMessage("Ничего не найдено");
+        }
+      } else {
+        setMovies(filteredMovies.slice(0, initialCardsAmount));
+        if (filteredShortMovies.length === 0) {
+          setResultMessage("Ничего не найдено");
+        }
+      }
 
       setErrorMessage("");
       setIsLoading(false);
@@ -118,9 +139,10 @@ function Movies({ savedMovies, setSavedMovies, cardErrorHandler }) {
   const saveMovie = (movie, likeHandler) => {
     mainApi
       .createMovie(movie, token)
-      .then(() => likeHandler(true))
       .then((newMovie) => {
+        // после ответа добавляем новый фильм в стейт
         setSavedMovies([...savedMovies, newMovie]);
+        // меняем кнопку
         likeHandler(true);
       })
       .catch((e) => e.json())
@@ -134,6 +156,7 @@ function Movies({ savedMovies, setSavedMovies, cardErrorHandler }) {
 
   const deleteMovie = (movieId, likeHandler) => {
     const idInSavedMovies = getOneIdByAnother(movieId, savedMovies);
+    console.dir(savedMovies)
     mainApi
       .removeMovie(idInSavedMovies, token)
       .then(() => {
