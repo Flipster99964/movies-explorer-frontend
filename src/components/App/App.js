@@ -80,7 +80,7 @@ function App() {
     mainApi
       .getSavedMovies(token)
       .then((res) => {
-        const moviesData = res.data
+        const moviesData = res.movies
         const ownSavedMovies = moviesData.filter(
           (movie) => movie.owner === currentUser._id
         );

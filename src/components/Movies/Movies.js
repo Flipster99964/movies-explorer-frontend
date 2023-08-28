@@ -39,7 +39,7 @@ function Movies({ savedMovies, setSavedMovies, cardErrorHandler }) {
   const token = localStorage.getItem("token");
   let allMovies = localStorage.getItem("allMoviesData");
   
-
+  // меняет отрисовку карточек от ширины экрана
   useEffect(() => {
     if (width >= LAPTOP_WIDTH) {
       setInitialCards(LARGE.firstPageCount);
@@ -56,6 +56,7 @@ function Movies({ savedMovies, setSavedMovies, cardErrorHandler }) {
   let filteredMovies = JSON.parse(queryData)?.filteredMovies || [];
   let filteredShortMovies = JSON.parse(queryData)?.filteredShortMovies || [];
 
+  // получаем последний запрос и состояние чекбокса
   useEffect(() => {
     if (queryData) {
       setLastSearchQuery(JSON.parse(queryData)?.searchQuery);
@@ -63,6 +64,7 @@ function Movies({ savedMovies, setSavedMovies, cardErrorHandler }) {
     }
   }, []);
 
+  // если нет ошибок, меняем блок результатов в зависимости от чекбокса
   useEffect(() => {
     if (!errorMessage) {
       shortFilmsCheck
@@ -72,6 +74,8 @@ function Movies({ savedMovies, setSavedMovies, cardErrorHandler }) {
 
   }, [shortFilmsCheck, cardsCount, errorMessage]);
 
+
+  // сохраняем состояние чекбокса при его изменении
   useEffect(() => {
     if (queryData) {
       const updatedQueryData = JSON.parse(queryData);
@@ -79,6 +83,16 @@ function Movies({ savedMovies, setSavedMovies, cardErrorHandler }) {
       localStorage.setItem("queryData", JSON.stringify(updatedQueryData));
     }
   }, [shortFilmsCheck, queryData]);
+
+    // удаляем данные о всех фильмах при обновлении страницы
+    useEffect(() => {
+      window.addEventListener("beforeunload", removeAllMoviesData);
+      return () => {
+        window.removeEventListener("beforeunload", removeAllMoviesData);
+      };
+    }, []);
+  
+    const removeAllMoviesData = () => localStorage.removeItem("allMoviesData");
 
   const submitHandler = async (isOnlyShortFilms, searchQuery) => {
     try {
@@ -155,11 +169,12 @@ function Movies({ savedMovies, setSavedMovies, cardErrorHandler }) {
   };
 
   const deleteMovie = (movieId, likeHandler) => {
+    console.dir("тест")
     const idInSavedMovies = getOneIdByAnother(movieId, savedMovies);
-    console.dir(savedMovies)
     mainApi
       .removeMovie(idInSavedMovies, token)
       .then(() => {
+        console.dir("тест")
         likeHandler(false);
         setSavedMovies((state) =>
           state.filter((m) => m._id !== idInSavedMovies)

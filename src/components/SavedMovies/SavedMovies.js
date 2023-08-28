@@ -85,7 +85,7 @@ const SavedMovies = ({
               onSavedPage={true}
             />
           )}
-          <p className="movies__message">{resultMessage || "Ничего не найдено"}</p>
+          <p className="movies__message">{resultMessage}</p>
         </section>
       <Footer />
     </div>

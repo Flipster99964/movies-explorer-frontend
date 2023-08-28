@@ -3,7 +3,26 @@
     min-height: 100vh;
     box-sizing: border-box;
   }
+
+  .profile__inputs {
+    margin: 0;
+    padding: 0;
+    border: none;
+    margin-bottom: 177px;
+  }
+
+  @media (max-width: 768px) {
+    .profile__inputs {
+      margin-bottom: 160px;
+    }
+  }
   
+  @media (max-width: 500px) {
+    .profile__inputs {
+      margin-bottom: 330px;
+    }
+  }
+
   .profile__container {
     margin: 0 auto;
     max-width: 410px;
@@ -44,23 +63,7 @@
       margin-bottom: 80px;
     }
   }
-  
-  .profile__form {
-    margin-bottom: 177px;
-  }
-  
-  @media (max-width: 768px) {
-    .profile__form {
-      margin-bottom: 160px;
-    }
-  }
-  
-  @media (max-width: 500px) {
-    .profile__form {
-      margin-bottom: 330px;
-    }
-  }
-  
+
   .profile__buttons {
     display: flex;
     flex-direction: column;

@@ -71,6 +71,7 @@ function Profile({
       <div className="profile__container">
       <h2 className="profile__title">{`Привет, ${currentUser.name}!`}</h2>
         <form className="profile__form" onSubmit={onSubmitForm} noValidate>
+          <fieldset className="profile__inputs">
           <Input
             label="Имя" 
             type="name" 
@@ -95,8 +96,8 @@ function Profile({
           autoComplete="off"
           disabled={isLoading}
           />
-        </form>
-        <p
+          </fieldset>
+          <p
             className={`profile__error-message ${
               messageModifier
                 ? `profile__error-message_type_${messageModifier}`
@@ -122,6 +123,7 @@ function Profile({
           </Button>
           </Link>
         </div>
+        </form>
       </div>
     </section>
   );
