@@ -6,7 +6,6 @@ import Delete from "../Icons/Delete"
 import { getCorrectDuration } from "../../utils/getCorrectDuration";
 import {
   SERVER_URL,
-  UNKNOWN_IMAGE_URL,
   UNKNOWN_TRAILER_URL,
   UNKNOWN_CARD_TEXT,
 } from "../../utils/constants";

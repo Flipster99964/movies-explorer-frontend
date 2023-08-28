@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import Container from "../Container/Container";
-import MoviesCard from "../MoviesCard/MoviesCard";
 import Button from "../Button/Button";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";

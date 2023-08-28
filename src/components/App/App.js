@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Route, Routes, Navigate, useNavigate, useLocation } from "react-router-dom";
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 
 import "./App.css";
 import Main from "../Main/Main";
@@ -60,7 +60,7 @@ function App() {
             history("/signin");
           });
       }
-    }, [token, isLoggedIn, history]);
+    }, [token, isLoggedIn]);
 
   // логинимся
   useEffect(() => {
