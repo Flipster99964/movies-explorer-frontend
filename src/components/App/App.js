@@ -60,7 +60,7 @@ function App() {
             history("/signin");
           });
       }
-    }, [token, isLoggedIn]);
+    }, [token, isLoggedIn, history]);
 
   // логинимся
   useEffect(() => {
@@ -84,7 +84,6 @@ function App() {
         const ownSavedMovies = moviesData.filter(
           (movie) => movie.owner === currentUser._id
         );
-
         localStorage.setItem("savedMovies", JSON.stringify(ownSavedMovies));
         setSavedMovies(ownSavedMovies);
         setSavedMoviesMessage("");

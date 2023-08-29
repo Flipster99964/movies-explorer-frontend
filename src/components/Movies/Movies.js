@@ -167,12 +167,10 @@ function Movies({ savedMovies, setSavedMovies, cardErrorHandler }) {
   };
 
   const deleteMovie = (movieId, likeHandler) => {
-    console.dir("тест")
     const idInSavedMovies = getOneIdByAnother(movieId, savedMovies);
     mainApi
       .removeMovie(idInSavedMovies, token)
       .then(() => {
-        console.dir("тест")
         likeHandler(false);
         setSavedMovies((state) =>
           state.filter((m) => m._id !== idInSavedMovies)

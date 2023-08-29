@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function RequireAuth({ children, ...props }) {
   return (

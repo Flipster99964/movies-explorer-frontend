@@ -19,9 +19,18 @@ const SavedMovies = ({
   // создаем дополнительный стейт, который будем отрисовывать
   const [moviesForRender, setMoviesForRender] = useState(savedMovies);
   const [resultMessage, setResultMessage] = useState("");
+
   const token = localStorage.getItem("token");
 
-  useEffect(() => setMoviesForRender(savedMovies), [savedMovies]);
+  const filteredShortMovies = findOnlyShortMovies(savedMovies);
+
+  useEffect(() => setMoviesForRender(savedMovies), [savedMovies, shortFilmsCheck]);
+
+  useEffect(() => {
+    if (shortFilmsCheck) {
+      setMoviesForRender(filteredShortMovies);
+    }
+  });
 
   useEffect(() => {
     if (message) {
@@ -46,6 +55,15 @@ const SavedMovies = ({
       })
       .catch((e) => console.log(e));
   };
+
+  const checkboxHandler = (isOnlyShortFilms) => {
+    if (!isOnlyShortFilms) {
+      setMoviesForRender(filteredShortMovies);
+    }
+    else  {
+      setMoviesForRender(savedMovies);
+    }
+  }
 
   const submitHandler = (isOnlyShortFilms, searchQuery) => {
     // фильтруем
@@ -75,6 +93,7 @@ const SavedMovies = ({
         <Header className={"header_type_white"}/>
           <SearchForm
             submitHandler={submitHandler}
+            checkboxHandler={checkboxHandler}
             checkbox={shortFilmsCheck}
             setCheckbox={setShortFilmsCheck}
           />

@@ -8,23 +8,33 @@ import { countInputs } from "../../utils/countInputs";
 import "./SearchForm.css";
 
 
-function SearchForm({ submitHandler, checkbox, setCheckbox, lastSearchQuery, isLoading }) {
+function SearchForm({ submitHandler, checkboxHandler, checkbox, setCheckbox, lastSearchQuery, isLoading }) {
   const [errorText, setErrorText] = useState("");
-  const { values, errors, handleChange, isFormValid, setValues, setIsFormValid } =
-    UseCustomValidation();
+  const {
+    values,
+    errors,
+    setValues,
+    handleChange,
+    isFormValid,
+    setIsFormValid,
+  } = UseCustomValidation();
   const amountInputs = countInputs(".search-form__input");
 
   UseCheckFormValidity(values, errors, amountInputs, setIsFormValid);
 
   useEffect(() => {
+    // отображаем последний запрос, если он есть
     if (lastSearchQuery) {
       setValues({ ...values, "film-query": lastSearchQuery });
     }
   }, [lastSearchQuery, setValues]);
 
-  const onClickCheckBox = () => setCheckbox(!checkbox);
-
-    const onSubmitForm = (e) => {
+  const onClickCheckBox = () => {
+    setCheckbox(!checkbox);
+    if (window.location.pathname == '/saved-movies')
+    checkboxHandler(checkbox);
+  }
+  const onSubmitForm = (e) => {
     e.preventDefault();
     if (values["film-query"] === undefined) {
       setErrorText("Запрос не может быть пустым");
@@ -69,7 +79,7 @@ function SearchForm({ submitHandler, checkbox, setCheckbox, lastSearchQuery, isL
         </Button>
       </div>
       <span className="search-form__error">{errorText}</span>
-      <label className={`search-form__label ${isLoading && "search-form__label_disabled"}`} htmlFor="short-film">
+      <label className={`search-form__label ${isLoading && "search-form__label_disabled"}`} type="button" htmlFor="short-film">
         <input
           className="search-form__radio"
           type="checkbox"
