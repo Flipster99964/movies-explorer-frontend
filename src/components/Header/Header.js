@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
 
 import Logo from "../Logo/Logo";
@@ -7,13 +7,22 @@ import Button from "../Button/Button";
 import Container from "../Container/Container";
 import AccountButton from "../AccountButton/AccountButton";
 import Sidebar from "../Sidebar/Sidebar";
+import currentUserContext from "../../context/currentUserContext";
 import "./Header.css";
 
 function Header({ className }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const isAuth = true; // для смены кнопок
+  {/*const isAuth = true; // для смены кнопок*/}
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { currentUser, setCurrentUser } = useContext(currentUserContext);
 
   const sidebarHandler = () => setIsSidebarOpen(!isSidebarOpen);
+ 
+  useEffect(() => {
+    localStorage.token === undefined
+      ? setIsLoggedIn(false)
+      : setIsLoggedIn(true);
+    }, [localStorage.token])
 
   return (
     <Container>
@@ -21,9 +30,11 @@ function Header({ className }) {
       <a className="header__link-logo" href="/">
             <Logo className="logo header__logo" />
       </a>
-      {isAuth && (
+      {isLoggedIn && (
         <nav className="header__nav">
-          <ul className="header__links">
+          <ul className={`header__links ${isLoggedIn
+            ? ""
+            : "header__links_type_hidden"}`}>
             <NavLink
               type="button"
               className="header__link"
@@ -44,7 +55,7 @@ function Header({ className }) {
         </nav>
                 )}
         <div className="header__account-menu">
-          {isAuth ? (
+          {isLoggedIn ? (
           <div className="header__account-button">
             <AccountButton />
           </div>
@@ -65,7 +76,7 @@ function Header({ className }) {
             </>
           )}
         </div>
-        {isAuth && (
+        {isLoggedIn && (
           <Button type="button" className="button_type_burger" onclick={setIsSidebarOpen}>
           <Burger
             className="header__burger-icon"

@@ -1,0 +1,21 @@
+.saved-movies-page {
+    box-sizing: border-box;
+  }
+  
+  .saved-movies-page__movies {
+    padding-bottom: 80px;
+  }
+  
+  .movies-page__movies-list_type_saved {
+    padding-bottom: 169px;
+  }
+  
+  .movies__message_type_error {
+    padding-top: 60px;
+  }
+  
+  @media (max-width: 768px) {
+    .movies__message_type_error {
+      padding-top: 80px;
+    }
+  }

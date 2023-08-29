@@ -110,3 +110,8 @@
       margin-right: 5px;
     }
   }
+
+  .header__links_type_hidden {
+    display: none;
+  }
+  
